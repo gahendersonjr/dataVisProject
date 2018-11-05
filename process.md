@@ -71,6 +71,21 @@ _November 20_
 
 As many optional features as feasible done, main feature made beautiful and any bugs fixed.
 
-###### Proposal images 
+##### Proposal images 
+*High Level View*
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/overview.jpg)
 
+*Absolute Life Expectancy*
+![Absolute Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/lifeExpectancyMap.jpg)
+
+*Percent Change Life Expectancy*
+![Percent Change Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/changeMap.jpg)
+
+*Country/Year Drilldown*
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/drilldown.jpg)
+
+*Default Slider*
 ![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/barplain.jpg)
+
+*Optional Slider*
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/optionalBar.jpg)
