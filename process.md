@@ -70,3 +70,9 @@ Prototype done. All required functionality present but not refined and beautifie
 _November 20_
 
 As many optional features as feasible done, main feature made beautiful and any bugs fixed.
+
+###### Proposal images
+
+##### High Level View 
+
+![GitHub Logo](//overview.png)
