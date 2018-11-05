@@ -71,8 +71,6 @@ _November 20_
 
 As many optional features as feasible done, main feature made beautiful and any bugs fixed.
 
-###### Proposal images
+###### Proposal images 
 
-##### High Level View 
-
-![GitHub Logo](//overview.png)
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/barplain.jpg)
