@@ -33,4 +33,10 @@ d3.json("data/world.json")
 });
 
 let slider = new Slider();
-slider.makeSlider();
+updateSlider();
+
+function updateSlider(){
+  let min_year = document.getElementById("start_year").value;
+  let max_year = document.getElementById("end_year").value;
+  slider.makeSlider(min_year, max_year);
+}

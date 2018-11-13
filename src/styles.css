@@ -1,3 +1,12 @@
 #map1 {
      border: 1px solid black;
 }
+
+.sliderTrack {
+  stroke: black;
+  stroke-width: 10px;
+}
+
+.sliderLabel {
+	text-anchor: middle;
+}
