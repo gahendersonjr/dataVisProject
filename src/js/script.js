@@ -25,3 +25,9 @@ d3.csv("data/lifeExpectancy.csv", function (d) {
 
 console.log(years);
 console.log(countries);
+
+let maps = new Maps();
+d3.json("data/world.json")
+    .then(function(world) {
+      maps.drawMap(world);
+});
