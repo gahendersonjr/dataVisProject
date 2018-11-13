@@ -1,7 +1,7 @@
 
-class Maps {
+class Map {
   constructor() {
-    this.projection = d3.geoMercator().scale(200).translate([620, 500]);
+    this.projection = d3.geoMercator().scale(200).translate([590, 400]);
   }
 
   drawMap(world) {
@@ -16,6 +16,4 @@ class Maps {
       .attr("id", d => d.id)
       .attr("d", path);
   }
-
-
 }
