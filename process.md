@@ -73,19 +73,19 @@ As many optional features as feasible done, main feature made beautiful and any 
 
 ##### Proposal images 
 *High Level View*
-![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/overview.jpg)
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/overview.jpg)
 
 *Absolute Life Expectancy*
-![Absolute Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/lifeExpectancyMap.jpg)
+![Absolute Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/images/lifeExpectancyMap.jpg)
 
 *Percent Change Life Expectancy*
-![Percent Change Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/changeMap.jpg)
+![Percent Change Life Expectancy](https://github.com/gahendersonjr/dataVisProject/blob/master/images/changeMap.jpg)
 
 *Country/Year Drilldown*
-![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/drilldown.jpg)
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/drilldown.jpg)
 
 *Default Slider*
-![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/barplain.jpg)
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/barplain.jpg)
 
 *Optional Slider*
-![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/optionalBar.jpg)
+![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/optionalBar.jpg)
