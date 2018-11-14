@@ -10,3 +10,7 @@
 .sliderLabel {
 	text-anchor: middle;
 }
+
+#year_input {
+  margin: 10px;
+}

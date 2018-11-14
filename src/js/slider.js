@@ -6,7 +6,7 @@ class Slider {
   }
 
   makeSlider(min_year, max_year) {
-    this.svg.selectAll("*").remove();
+    // this.svg.selectAll("*").remove();
     let scale = d3.scaleLinear()
                   .domain([this.barStart, this.barEnd])
                   .range([min_year, max_year]);
