@@ -39,9 +39,13 @@ class Slider {
             return;
           }
           d3.select(this).attr("cx", new_x);
+          let year = Math.round(scale(new_x));
+          map.yearColor(year);
           d3.select("#current_selection")
-            .text(Math.round(scale(new_x)))
+            .text(year)
             .attr("x", new_x);
+
+          // map.yearColor(document.getElementById("end_year").value);
         }));
 
   }

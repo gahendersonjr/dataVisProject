@@ -1,12 +1,12 @@
 let countries = [];
 let continents = [];
-let world;
 
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
       let country = data[i];
       if(country.geo.length == 3){
+        country.geo = country.geo.toUpperCase();
         countries.push(country);
       }
     }
@@ -20,20 +20,13 @@ d3.csv("data/lexContinents.csv", d => d)
     }
 });
 
-d3.csv("data/lexWorld.csv", d => d)
-  .then(function(data) {
-    console.log(data);
-  });
+// console.log(countries);
+// console.log(continents);
 
-
-console.log(countries);
-console.log(continents);
-console.log(world);
-
-let map = new Map();
+let map = new Map(countries);
 d3.json("data/world.json")
-    .then(function(world) {
-      map.drawMap(world);
+    .then(function(data) {
+      map.drawMap(data);
 });
 
 let slider = new Slider();
