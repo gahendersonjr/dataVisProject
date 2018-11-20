@@ -5,7 +5,7 @@ d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
       let country = data[i];
-      if(country.geo.length == 3){
+      if(country.geo && country.geo.length == 3){
         country.geo = country.geo.toUpperCase();
         countries.push(country);
       }
