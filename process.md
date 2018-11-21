@@ -1,5 +1,5 @@
-# Final Project Proposal
-### CS 5890 Data Visualization, Fall 2018
+# CS 5890 Data Visualization, Fall 2018
+## Final Project Proposal
 ##### Basic Info
 _Project Title:_
  
@@ -89,3 +89,22 @@ As many optional features as feasible done, main feature made beautiful and any 
 
 *Optional Slider*
 ![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/optionalBar.jpg)
+
+## Prototype (due 11/21/2018)
+##### Data
+We are primarily using two data structures in our project. The main one is the life expectancy data. This data is provided in excel spreadsheet form but it was converted to csv. We have seperated our data into objects that include all the years and their respective life expectancy by country and by continent. Each of theses are loaded into arrays to be access by the javascript. The country data is the main display but the continent average data will be used as a baseline in some of our images. Some of this data is incomplete so we have to handle that case in the visualizations.
+
+The other data is the world object data that is used to project the map. As we render the path objects, we give them their three digit country code as an id so they are easy to look up and color in response to the other dataset.
+
+##### Protoype
+What we currently have working is the year slider and the map. For the slider, a user can input the range and then slide it around to update the color of the map. Currently we have 4 views: one for the total life expectancy value and three trend views of different intervals. The total life expectancy view gets lighter the higher the life expectancy for the color in a given year. On the trend views, we use white as a baseline and each country appears more red if it is trending downward and blue if it is trending upwards. If no data is present for the country on the given year, the country appears gray in all the maps.
+
+The coloring on all the maps needs to be revisited to determine how they can best communicated what we are trying to show, but the framework is in place for those changes to be really simple.
+
+##### To Do
+-Add boundary checking for year range input to warn users if their range includes years with no data.
+-Add zoom to map
+-Possibly replace the alternate trend views with togglable arrows or other indicators if we can think of something that will work.
+-Possibly add customization to trend views (ability to select interval for trending view)
+-Add legends to the map
+-Add secondary charts to the accompany the map
