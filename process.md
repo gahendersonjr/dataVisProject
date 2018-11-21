@@ -102,9 +102,9 @@ What we currently have working is the year slider and the map. For the slider, a
 The coloring on all the maps needs to be revisited to determine how they can best communicated what we are trying to show, but the framework is in place for those changes to be really simple.
 
 ##### To Do
--Add boundary checking for year range input to warn users if their range includes years with no data.
--Add zoom to map
--Possibly replace the alternate trend views with togglable arrows or other indicators if we can think of something that will work.
--Possibly add customization to trend views (ability to select interval for trending view)
--Add legends to the map
--Add secondary charts to the accompany the map
+- Add boundary checking for year range input to warn users if their range includes years with no data.
+- Add zoom to map
+- Possibly replace the alternate trend views with togglable arrows or other indicators if we can think of something that will work.
+- Possibly add customization to trend views (ability to select interval for trending view)
+- Add legends to the map
+- Add secondary charts to the accompany the map
