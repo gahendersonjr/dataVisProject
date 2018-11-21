@@ -37,3 +37,7 @@ function updateSlider(){
   let max_year = document.getElementById("end_year").value;
   slider.makeSlider(min_year, max_year);
 }
+
+function updateMapMode(){
+  map.yearColor(document.getElementById("end_year").value);
+}
