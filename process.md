@@ -67,6 +67,7 @@ _November 19_
 
 Prototype done. All required functionality present but not refined and beautified.
 
+
 _November 20_
 
 As many optional features as feasible done, main feature made beautiful and any bugs fixed.
@@ -100,6 +101,8 @@ The other data is the world object data that is used to project the map. As we r
 What we currently have working is the year slider and the map. For the slider, a user can input the range and then slide it around to update the color of the map. Currently we have 4 views: one for the total life expectancy value and three trend views of different intervals. The total life expectancy view gets lighter the higher the life expectancy for the color in a given year. On the trend views, we use white as a baseline and each country appears more red if it is trending downward and blue if it is trending upwards. If no data is present for the country on the given year, the country appears gray in all the maps.
 
 The coloring on all the maps needs to be revisited to determine how they can best communicated what we are trying to show, but the framework is in place for those changes to be really simple.
+
+The data on the line graph and bar chart simply shows 6 static countries: United States, Canada, Russia, Italy, Brazil, and Japan.  The data will adjust as the user selects different countries to include or exclude from the views.
 
 ##### To Do
 - Add boundary checking for year range input to warn users if their range includes years with no data.
