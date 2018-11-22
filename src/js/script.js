@@ -10,6 +10,7 @@ d3.csv("data/lex.csv", d => d)
         countries.push(country);
       }
     }
+	let time = new TimeLine(countries, null, document.getElementById("start_year").value, document.getElementById("end_year").value, 2018);
 });
 
 d3.csv("data/lexContinents.csv", d => d)
@@ -41,3 +42,4 @@ function updateSlider(){
 function updateMapMode(){
   map.yearColor(document.getElementById("end_year").value);
 }
+
