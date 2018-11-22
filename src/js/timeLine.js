@@ -4,7 +4,7 @@ class TimeLine {
   constructor(worldData, countries, beginYear, endYear, currentYear) {
     this.worldData = worldData.slice();
 
-	if( countries != null ) 
+	if( countries != null && countries.length > 0 ) 
 		this.countries = countries.slice();
 	else
 		this.countries = ["USA","RUS","CAN","JPN","ITA","BRA"];
@@ -18,6 +18,9 @@ class TimeLine {
 	this.beginYear = beginYear;
 	this.endYear = endYear;
 	this.draw();
+	
+	this.barChart = new BarChart(this.currentData, this.countries, this.year);
+	this.info = new InfoPanel(this.currentData, this.countries[0]);
   }
   
   //construct axes and scale
@@ -69,7 +72,7 @@ class TimeLine {
 		.data(this.currentData)
 		.enter()
 		.append("path")
-		.attr("class",(d,i)=>"line"+i)
+		.attr("class",(d,i)=>"country"+i)
 		.attr("d", lineMaker )
 		.attr("fill","none")
 		.attr("stroke","blue")
@@ -120,6 +123,12 @@ class TimeLine {
 	  this.countries.push( newCountry );
 	  this.redraw();
   }
+  
+  removeCountry( country ){
+	  for( let c of this.countries )
+		  this.countries = this.countries.filter( c => c == country );
+	  this.redraw();
+  }	  
    
   //update graphics to reflect current data
   redraw()
