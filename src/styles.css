@@ -18,3 +18,7 @@
 .inactive {
   opacity: 0;
 }
+
+.freeze {
+	pointer-events: none;
+}

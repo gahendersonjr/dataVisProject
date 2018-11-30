@@ -37,7 +37,7 @@ class Map {
         .attr("fill", "none")
         .classed("inactive", true);
 
-  let year = document.getElementById("end_year").value;
+  let year = 2018;
   this.updateCountry(year);
   this.createPatterns();
   this.updateArrows(year);
@@ -69,6 +69,7 @@ class Map {
       }
       d3.select("#" + country.geo)
         .attr("fill", color);
+      map.updateArrows(year);
     }
   }
 

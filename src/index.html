@@ -22,12 +22,8 @@
     </header>
     <svg id="slider" width="1215" height="70"></svg>
     <br>
-    <label for="start_year">Start Year</label>
-    <input class="year_input" type="text" id="start_year" value="1800">
-    <label for="end_year">End Year</label>
-    <input class="year_input" type="text" id="end_year" value="2018">
-    <button onclick="updateSlider()">Submit</button>
-    <input type="checkbox" id="arrowBox" onchange="toggleArrows()"> Show 10 year trend<br>
+    <input type="checkbox" id="arrowBox" onchange="toggleArrows()"> Show 10 year trend
+    <button id = "play" onclick="playAnimation()">Play</button>
     <br>
     <br>
     <svg id="map1" width="1215" height="650">

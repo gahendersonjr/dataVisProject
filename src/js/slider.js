@@ -25,12 +25,13 @@ class Slider {
       .classed("sliderLabel", true)
       .attr("id", "current_selection");
 
-    let barStart = this.barStart;
+    let barStart = this.barStart; 
     let barEnd = this.barEnd;
     this.svg.append("circle")
       .attr("cx", this.barEnd)
       .attr("cy", 20)
       .attr("r", 20)
+      .attr("id", "yearSelector")
       .attr("fill", "black")
       .call(d3.drag()
         .on("drag", function(){
@@ -41,11 +42,17 @@ class Slider {
           d3.select(this).attr("cx", new_x);
           let year = Math.round(scale(new_x));
           map.updateCountry(year);
-          map.updateArrows(year);
           d3.select("#current_selection")
             .text(year)
             .attr("x", new_x);
         }));
 
+  }
+
+  setPosition(year, min_year, max_year){
+    let scale = d3.scaleLinear()
+                  .domain([min_year, max_year])
+                  .range([this.barStart, this.barEnd]);
+    d3.select("#yearSelector").attr("cx", Math.round(scale(year)));
   }
 }

@@ -1,6 +1,9 @@
 let countries = [];
 let continents = [];
 
+let min_year = 1850;
+let max_year = 2018;
+
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
@@ -10,8 +13,10 @@ d3.csv("data/lex.csv", d => d)
         countries.push(country);
       }
     }
-	let time = new TimeLine(countries, null, document.getElementById("start_year").value, document.getElementById("end_year").value, 2018);
+    let time = new TimeLine(countries, null, min_year, max_year, 2018);
 });
+
+
 
 d3.csv("data/lexContinents.csv", d => d)
   .then(function(data) {
@@ -29,13 +34,7 @@ d3.json("data/world.json")
 });
 
 let slider = new Slider();
-updateSlider();
-
-function updateSlider(){
-  let min_year = document.getElementById("start_year").value;
-  let max_year = document.getElementById("end_year").value;
-  slider.makeSlider(min_year, max_year);
-}
+slider.makeSlider(min_year, max_year);
 
 function toggleArrows(){
   if(document.getElementById("arrowBox").checked){
@@ -43,4 +42,29 @@ function toggleArrows(){
   } else {
     map.removeArrows();
   }
+}
+
+let animationStopped = true;
+
+async function playAnimation(){
+  animationStopped = !animationStopped;
+  let sliderElement = d3.select("#slider");
+  sliderElement.classed("freeze", true);
+  for(let year = min_year; year <= max_year; year++){
+    if(animationStopped) {
+      sliderElement.classed("freeze", false);
+      animationStopped = true;
+      document.getElementById("ShowButton").value= "Play";
+      return;
+    }
+    slider.setPosition(year, min_year, max_year);
+    map.updateCountry(year);
+    await sleep(1);
+  }
+  sliderElement.classed("freeze", false);
+  animationStopped = true;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
