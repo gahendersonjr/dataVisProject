@@ -111,7 +111,7 @@ class Map {
             } else if (percent_change < 0) {
               return "red";
             } else {
-              return "lightGray";
+              return "white";
             }
           });
        } else {

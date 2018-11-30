@@ -21,8 +21,6 @@ d3.csv("data/lexContinents.csv", d => d)
     }
 });
 
-// console.log(countries);
-// console.log(continents);
 
 let map = new Map(countries);
 d3.json("data/world.json")
