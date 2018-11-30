@@ -53,6 +53,10 @@ class Slider {
     let scale = d3.scaleLinear()
                   .domain([min_year, max_year])
                   .range([this.barStart, this.barEnd]);
-    d3.select("#yearSelector").attr("cx", Math.round(scale(year)));
+    let new_x = Math.round(scale(year));
+    d3.select("#yearSelector").attr("cx", new_x);
+    d3.select("#current_selection")
+            .text(year)
+            .attr("x", new_x);
   }
 }

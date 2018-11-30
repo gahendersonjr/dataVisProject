@@ -46,7 +46,8 @@ function toggleArrows(){
 
 let animationStopped = true;
 
-async function playAnimation(){
+async function playAnimation(button, start_year){
+  button.innerText = "Stop"
   animationStopped = !animationStopped;
   let sliderElement = d3.select("#slider");
   sliderElement.classed("freeze", true);
@@ -54,7 +55,7 @@ async function playAnimation(){
     if(animationStopped) {
       sliderElement.classed("freeze", false);
       animationStopped = true;
-      document.getElementById("ShowButton").value= "Play";
+      button.innerText = "Play";
       return;
     }
     slider.setPosition(year, min_year, max_year);
