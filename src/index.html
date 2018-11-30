@@ -27,15 +27,11 @@
     <label for="end_year">End Year</label>
     <input class="year_input" type="text" id="end_year" value="2018">
     <button onclick="updateSlider()">Submit</button>
-      <select id="mapMode" onchange="updateMapMode()">
-        <option value="totals">Totals</option>
-        <option value="10year">10 year trend</option>
-        <option value="20year">20 year trend</option>
-        <option value="50year">50 year trend</option>
-      </select>
+    <input type="checkbox" id="arrowBox" onchange="toggleArrows()"> Show 10 year trend<br>
     <br>
     <br>
-    <svg id="map1" width="1215" height="650"></svg>
+    <svg id="map1" width="1215" height="650">
+    </svg>
 	<br/>
 	<div id="barchart"></div>
 	<div id="timeline"></div>

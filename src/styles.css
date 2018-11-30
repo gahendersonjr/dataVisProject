@@ -14,3 +14,7 @@
 #year_input {
   margin: 10px;
 }
+
+.inactive {
+  opacity: 0;
+}

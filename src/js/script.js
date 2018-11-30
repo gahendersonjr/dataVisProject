@@ -39,7 +39,10 @@ function updateSlider(){
   slider.makeSlider(min_year, max_year);
 }
 
-function updateMapMode(){
-  map.yearColor(document.getElementById("end_year").value);
+function toggleArrows(){
+  if(document.getElementById("arrowBox").checked){
+    map.showArrows();
+  } else {
+    map.removeArrows();
+  }
 }
-

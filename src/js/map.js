@@ -4,20 +4,22 @@ class Map {
     this.projection = d3.geoMercator().scale(200).translate([590, 400]);
     this.countries = countries;
 
-    this.totalScale = d3.scaleLinear()
-      .domain([0, 100])
-      .range(["maroon", "white"]);
+    this.colorScale = d3.scaleLinear()
+      .domain([20, 100])
+      .range(["blue", "white"]);
 
-    this.trendScale = d3.scaleLinear()
-      .domain([-.3, 0, .3])
-      .range(["red", "white", "blue"]);
-  }
+    this.rotateScale = d3.scaleLinear()
+      .domain([-1, 1])
+      .range([180, 0]);
+
+    this.svg = d3.select("#map1");
+    }
 
   drawMap(world) {
     world = topojson.feature(world,world.objects.countries);
     let path = d3.geoPath()
       .projection(this.projection);
-    let enter = d3.select("#map1").selectAll("path")
+    let enter = this.svg.selectAll("path")
       .data(world.features)
       .enter();
 
@@ -25,58 +27,97 @@ class Map {
       .attr("class", "countries")
       .attr("id", d => d.id)
       .attr("d", path)
-      .attr("fill", "gray")
-      .attr("stroke", "gray");
+      .attr("fill", "lightGray")
+      .attr("stroke", "white");
 
-      this.yearColor(document.getElementById("end_year").value);
+    enter.append("path")
+        .attr("class", "arrow")
+        .attr("id", d => d.id + "Arrow")
+        .attr("d", path)
+        .attr("fill", "none")
+        .classed("inactive", true);
+
+  let year = document.getElementById("end_year").value;
+  this.updateCountry(year);
+  this.createPatterns();
+  this.updateArrows(year);
   }
 
-  yearColor(year) {
-    let value = document.getElementById("mapMode").value;
-    if (value == "totals"){
-      this.totalColor(year);
-    } else if(value=="10year"){
-      this.trendColor(year, 10);
-    } else if(value=="20year"){
-      this.trendColor(year, 20);
-    } else if(value=="50year"){
-      this.trendColor(year, 50);
-    }
+  createPatterns(){
+    this.svg.append("defs")
+      .selectAll("pattern")
+      .data(this.countries)
+      .enter()
+      .append("pattern")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", 12)
+        .attr("height", 12)
+        .attr("patternUnits", "userSpaceOnUse")
+        .attr("id", d => d.geo.toUpperCase() + "Pattern")
+      .append("path")
+        .attr("d", "M0,7.5 L2.5,0 L5,7.5")
+        .attr("fill", "lightGray");
   }
 
-  totalColor(year) {
+  updateCountry(year) {
     for(let i in this.countries) {
       let country = this.countries[i];
-      let color = "gray";
+      let color = "lightGray";
       if(country[year]){
-        color = this.totalScale(country[year]);
+        color = this.colorScale(country[year]);
       }
       d3.select("#" + country.geo)
         .attr("fill", color);
     }
   }
 
-  trendColor(year, interval) {
-    let high = 0;
-    let low = 0;
+  showArrows(){
+    d3.selectAll(".arrow")
+      .classed("inactive", false);
+  }
+
+  removeArrows(){
+    d3.selectAll(".arrow")
+      .classed("inactive", true);
+  }
+
+  updateArrows(year){
+    let checked = document.getElementById("arrowBox").checked;
+    let interval = 10;
+    let rotate;
+
     for(let i in this.countries) {
-      let country = this.countries[i];
-      let color = "gray";
-      if(country[year-interval] && country[year]){
-        // color = this.totalScale(country[year]);
-        let percent_change = (country[year] - country[year-interval])/country[year];
-        // console.log(percent_change);
-        if (percent_change>high){
-          high = percent_change;
-        }
-        if (percent_change<low){
-          low = percent_change;
-        }
-        color = this.trendScale(percent_change);
-      }
-      d3.select("#" + country.geo)
-        .attr("fill", color);
-    }
-    console.log(low + " " + high);
+      let country = countries[i];
+       if(country[year-interval] && country[year]){
+         this.svg.select("#" + country.geo + "Arrow")
+          .classed("inactive", !checked);
+
+         let percent_change = (country[year] - country[year-interval])/country[year];
+         rotate = this.rotateScale(percent_change);
+
+         let pattern = this.svg.select("#"  + country.geo + "Pattern");
+
+         pattern
+          .attr("patternTransform", "rotate(" + rotate +")")
+
+        this.svg.select("#" + country.geo + "Arrow")
+          .attr("fill", "url(#"  + country.geo + "Pattern)");
+
+        pattern.selectAll("*")
+          .attr("fill", function(d){
+            if(percent_change > 0){
+              return "lightGreen";
+            } else if (percent_change < 0) {
+              return "red";
+            } else {
+              return "lightGray";
+            }
+          });
+       } else {
+         this.svg.select("#" + country.geo + "Arrow")
+          .classed("inactive", true);
+       }
+     }
   }
 }

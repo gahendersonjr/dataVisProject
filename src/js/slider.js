@@ -40,12 +40,11 @@ class Slider {
           }
           d3.select(this).attr("cx", new_x);
           let year = Math.round(scale(new_x));
-          map.yearColor(year);
+          map.updateCountry(year);
+          map.updateArrows(year);
           d3.select("#current_selection")
             .text(year)
             .attr("x", new_x);
-
-          // map.yearColor(document.getElementById("end_year").value);
         }));
 
   }
