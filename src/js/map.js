@@ -69,7 +69,7 @@ class Map {
       }
       d3.select("#" + country.geo)
         .attr("fill", color);
-      map.updateArrows(year);
+      // map.updateArrows(year);
     }
   }
 

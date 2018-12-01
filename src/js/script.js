@@ -60,7 +60,8 @@ async function playAnimation(button, start_year){
     }
     slider.setPosition(year, min_year, max_year);
     map.updateCountry(year);
-    await sleep(1);
+    map.updateArrows(year);
+    await sleep(300);
   }
   sliderElement.classed("freeze", false);
   animationStopped = true;
