@@ -11,6 +11,10 @@ class Slider {
                   .domain([this.barStart, this.barEnd])
                   .range([min_year, max_year]);
 
+    let reverseScale = d3.scaleLinear()
+                  .domain([min_year, max_year])
+                  .range([this.barStart, this.barEnd]);
+
     this.svg.append("line")
       .classed("sliderTrack", true)
       .attr("x1", this.barStart)
@@ -18,19 +22,41 @@ class Slider {
       .attr("y1", 20)
       .attr("y2", 20);
 
+    let barStart = this.barStart;
+    let barEnd = this.barEnd;
+
     this.svg.append("text")
-      .text(max_year)
-      .attr("x", this.barEnd)
-      .attr("y", 60)
+      .text(min_year)
+      .attr("x", barStart)
+      .attr("y", 45)
       .classed("sliderLabel", true)
       .attr("id", "current_selection");
 
-    let barStart = this.barStart;
-    let barEnd = this.barEnd;
+    this.svg.append("text")
+      .text(min_year)
+      .attr("x", barStart)
+      .attr("y", 9)
+      .classed("staticLabel", true);
+
+
+    this.svg.append("text")
+      .text(max_year)
+      .attr("x", barEnd)
+      .attr("y", 9)
+      .classed("staticLabel", true);
+
+    if(max_year>2018){
+      this.svg.append("text")
+        .text("2018")
+        .attr("x", reverseScale(2018))
+        .attr("y", 9)
+        .classed("staticLabel", true);
+    }
+
     this.svg.append("circle")
-      .attr("cx", this.barEnd)
+      .attr("cx", barStart)
       .attr("cy", 20)
-      .attr("r", 20)
+      .attr("r", 8)
       .attr("id", "yearSelector")
       .attr("fill", "black")
       .call(d3.drag()
@@ -47,6 +73,13 @@ class Slider {
             .text(year)
             .attr("x", new_x);
         }));
+
+    this.svg.append("line")
+      .classed("sliderTrack", true)
+      .attr("x1", this.barStart)
+      .attr("x2", this.barEnd)
+      .attr("y1", 20)
+      .attr("y2", 20);
 
   }
 

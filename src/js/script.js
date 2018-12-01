@@ -36,8 +36,8 @@ d3.json("data/world.json")
 let slider = new Slider();
 slider.makeSlider(min_year, max_year);
 
-function toggleArrows(){
-  if(document.getElementById("arrowBox").checked){
+function toggleArrows(checkbox){
+  if(checkbox.checked){
     map.showArrows();
   } else {
     map.removeArrows();
@@ -46,27 +46,37 @@ function toggleArrows(){
 
 let animationStopped = true;
 
-async function playAnimation(button, start){
+async function playAnimation(button){
   button.innerText = "Stop"
   animationStopped = !animationStopped;
   let sliderElement = d3.select("#slider");
   sliderElement.classed("freeze", true);
-  for(let year = min_year; year <= max_year; year++){
-    if(animationStopped) {
-      sliderElement.classed("freeze", false);
-      animationStopped = true;
-      button.innerText = "Play";
-      return;
+  let year = document.getElementById("current_selection").innerHTML;
+  while(!animationStopped){
+    if(year==max_year){
+      year=min_year;
     }
     slider.setPosition(year, min_year, max_year);
     map.updateCountry(year);
     map.updateArrows(year);
     await sleep(300);
+    year++;
   }
   sliderElement.classed("freeze", false);
   animationStopped = true;
+  button.innerText = "Play";
 }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function toggleFutureProjections(checkbox){
+  animationStopped = true;
+  if(checkbox.checked){
+    max_year = 2100;
+  } else {
+    max_year = 2018;
+  }
+  slider.makeSlider(min_year, max_year);
 }

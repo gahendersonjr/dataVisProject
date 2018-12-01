@@ -5,8 +5,8 @@ class Map {
     this.countries = countries;
 
     this.colorScale = d3.scaleLinear()
-      .domain([20, 100])
-      .range(["blue", "white"]);
+      .domain([0, 100])
+      .range(["black", "lightGray"]);
 
     this.rotateScale = d3.scaleLinear()
       .domain([-1, 1])

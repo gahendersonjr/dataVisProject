@@ -4,11 +4,17 @@
 
 .sliderTrack {
   stroke: black;
-  stroke-width: 10px;
+  stroke-width: 5px;
 }
 
 .sliderLabel {
 	text-anchor: middle;
+}
+
+.staticLabel {
+	text-anchor: middle;
+  font-size: 12px;
+  stroke: gray;
 }
 
 #year_input {
@@ -19,6 +25,6 @@
   opacity: 0;
 }
 
-.freeze {
+.freeze * {
 	pointer-events: none;
 }

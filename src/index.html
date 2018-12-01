@@ -20,9 +20,10 @@
     <header>
         <h1>Life Expectancy Visualized</h1>
     </header>
-    <svg id="slider" width="1215" height="70"></svg>
+    <svg id="slider" width="1215" height="50"></svg>
     <br>
-    <input type="checkbox" id="arrowBox" onchange="toggleArrows()"> Show trend
+    <input type="checkbox" id="futureBox" onchange="toggleFutureProjections(this)"> Include future projections </input>
+    <input type="checkbox" id="arrowBox" onchange="toggleArrows(this)"> Show trend </input>
     <button id = "play" onclick="playAnimation(this)">Play</button>
     <br>
     <br>
