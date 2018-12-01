@@ -46,7 +46,7 @@ function toggleArrows(){
 
 let animationStopped = true;
 
-async function playAnimation(button, start_year){
+async function playAnimation(button, start){
   button.innerText = "Stop"
   animationStopped = !animationStopped;
   let sliderElement = d3.select("#slider");
