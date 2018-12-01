@@ -5,7 +5,7 @@ class Slider {
     this.barEnd = this.svg.attr("width")-50;
   }
 
-  makeSlider(min_year, max_year) {
+  makeSlider(min_year, max_year, selected_year) {
     this.svg.selectAll("*").remove();
     let scale = d3.scaleLinear()
                   .domain([this.barStart, this.barEnd])
@@ -81,6 +81,7 @@ class Slider {
       .attr("y1", 20)
       .attr("y2", 20);
 
+    this.setPosition(selected_year, min_year, max_year)
   }
 
   setPosition(year, min_year, max_year){

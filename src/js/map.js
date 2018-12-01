@@ -63,7 +63,7 @@ class Map {
   updateCountry(year) {
     for(let i in this.countries) {
       let country = this.countries[i];
-      let color = "lightGray";
+      let color = "white";
       if(country[year]){
         color = this.colorScale(country[year]);
       }
