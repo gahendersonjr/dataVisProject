@@ -53,6 +53,13 @@ class Slider {
         .classed("staticLabel", true);
     }
 
+    this.svg.append("line")
+      .classed("sliderTrack", true)
+      .attr("x1", this.barStart)
+      .attr("x2", this.barEnd)
+      .attr("y1", 20)
+      .attr("y2", 20);
+
     this.svg.append("circle")
       .attr("cx", barStart)
       .attr("cy", 20)
@@ -73,13 +80,6 @@ class Slider {
             .text(year)
             .attr("x", new_x);
         }));
-
-    this.svg.append("line")
-      .classed("sliderTrack", true)
-      .attr("x1", this.barStart)
-      .attr("x2", this.barEnd)
-      .attr("y1", 20)
-      .attr("y2", 20);
 
     this.setPosition(selected_year, min_year, max_year)
   }

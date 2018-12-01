@@ -31,7 +31,8 @@ class Map {
       .attr("stroke", "white");
 
     enter.append("path")
-        .attr("class", "arrow")
+        .classed("arrow", true)
+        .classed("hasData", true)
         .attr("id", d => d.id + "Arrow")
         .attr("d", path)
         .attr("fill", "none")
@@ -64,16 +65,20 @@ class Map {
     for(let i in this.countries) {
       let country = this.countries[i];
       let color = "white";
+      let hasData = false;
       if(country[year]){
         color = this.colorScale(country[year]);
+        hasData = true;
       }
       d3.select("#" + country.geo)
         .attr("fill", color);
+      d3.select("#" + country.geo + "Arrow")
+        .classed("hasData", hasData);
     }
   }
 
   showArrows(){
-    d3.selectAll(".arrow")
+    d3.selectAll(".hasData")
       .classed("inactive", false);
   }
 
