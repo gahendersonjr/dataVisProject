@@ -4,7 +4,7 @@ let continents = [];
 let min_year = 1850;
 let max_year = 2018;
 let selected_year = 1850;
-
+let time;
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
@@ -14,7 +14,7 @@ d3.csv("data/lex.csv", d => d)
         countries.push(country);
       }
     }
-    let time = new TimeLine(countries, null, min_year, max_year, 2018);
+    time = new TimeLine(countries, null, min_year, max_year, selected_year);
 });
 
 
@@ -60,6 +60,7 @@ async function playAnimation(button){
     slider.setPosition(selected_year, min_year, max_year);
     map.updateCountry(selected_year);
     map.updateArrows(selected_year);
+    time.updateYear(selected_year);
     await sleep(300);
     selected_year++;
   }

@@ -8,10 +8,10 @@ class BarChart {
     this.year = currentYear;
 	this.draw();
   }
-  
+
   //construct axes and scale
   draw() {
-	  
+
 	  let width = 500;
 	  let height = 250;
 	  let vPadding = 20;
@@ -19,12 +19,12 @@ class BarChart {
 	  let barPadding = 2;
 	  let max = 0;
 //	  let barWidth = (width-2*hPadding-barPadding*this.countries.length )/ this.countries.length;
-	  
+
 	  let names = [];
 	  for( let c of this.worldData )
 		  names.push(c["geo.name"]);
 		console.log(names);
-	  
+
 	  let xScale = d3.scaleBand()
 		.domain(names)
 		.rangeRound([hPadding, width-hPadding])
@@ -35,10 +35,10 @@ class BarChart {
 		.domain([0,100])
 		.range([height - vPadding, vPadding]);
 	  let yAxis = d3.axisLeft().scale(yScale);
-	
-	  
+
+
 	  d3.select("#barchartsvg").remove();
-	  
+
 	  let svg = d3.select("#barchart").selectAll("svg")
 		.data([0])
 		.enter()
@@ -47,17 +47,17 @@ class BarChart {
 		.attr("height",250)
 		.attr("id","barchartsvg")
 	  ;
-	  
+
 	  svg.append("g")
 		.attr("class","axis")
 		.attr("transform",`translate(0,${height-vPadding})`)
 		.call(xAxis);
-	  
+
 	  svg.append("g")
 		.attr("class","axis")
 		.attr("transform",`translate(${hPadding},0)`)
 		.call(yAxis);
-		
+
 	  svg.selectAll("rect")
 		.data(this.worldData)
 		.enter()
@@ -76,19 +76,19 @@ class BarChart {
 		.style("stroke-dasharray","2 2")
 		.attr("d", "M " + xScale(this.year) + ",0 L " + xScale(this.year) + "," + (height-vPadding) )
 	  ;
-*/	  
-	  
+*/
+
   }
 
   updateYear(newYear) {
 	this.year = newYear;
 	this.redraw();
   }
-  
+
   updateCountries(newCountryList) {
 	  this.countries = newCountryList.slice();
   }
-  
+
   addCountry( newCountry ){
 	  for( let c of this.countries )
 		  if( c == newCountry )
@@ -96,16 +96,16 @@ class BarChart {
 	  this.countries.push( newCountry );
 	  this.redraw();
   }
-  
+
   update(newYear, newCountryList) {
 	  this.updateYear(newYear);
 	  this.updateCountries(newCountryList);
   }
-  
+
   //update graphics to reflect current data
   redraw()
   {
-	  
+	  console.log("redraw barChart " + this.year);
   }
 
 }

@@ -76,6 +76,7 @@ class Slider {
           let year = Math.round(scale(new_x));
           map.updateCountry(year);
           map.updateArrows(year);
+          time.updateYear(year);
           d3.select("#current_selection")
             .text(year)
             .attr("x", new_x);
