@@ -26,8 +26,8 @@ class TimeLine {
   //construct axes and scale
   draw() {
 
-	  let width = 500;
-	  let height = 250;
+	  let width = 0.95*screen.width;
+	  let height = 200;
 	  let vPadding = 20;
 	  let hPadding = 25;
 	  let max = 0;
@@ -35,7 +35,7 @@ class TimeLine {
 	  let xScale = d3.scaleLinear()
 		.domain([this.beginYear,this.endYear])
 		.range([hPadding, width-hPadding]);
-	  let xAxis = d3.axisBottom().scale(xScale);
+	  let xAxis = d3.axisBottom().scale(xScale).ticks(18);
 
 	  let yScale = d3.scaleLinear()
 		.domain([0,100])
@@ -49,8 +49,8 @@ class TimeLine {
 		.data([0])
 		.enter()
 		.append("svg")
-		.attr("width",500)
-		.attr("height",250)
+		.attr("width",width)
+		.attr("height",height)
 		.attr("id","timechart")
 	  ;
 
@@ -59,7 +59,7 @@ class TimeLine {
 
 	  let lineMaker = function(d) {
 		  let p = "M ";
-		  for( let year = start; year <= end; year++ ) //year=parseInt(year)+5)
+		  for( let year = start; year <= end; year++ )
 		  {
 			  if (year > start)
 				  p += " L ";

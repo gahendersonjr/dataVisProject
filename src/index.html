@@ -17,22 +17,23 @@
 
 <body>
 <div>
-    <header>
-        <h1>Life Expectancy Visualized</h1>
-    </header>
-    <svg id="slider" width="1215" height="50"></svg>
-    <br>
-    <input type="checkbox" id="futureBox" onchange="toggleFutureProjections(this)"> Include future projections </input>
-    <input type="checkbox" id="arrowBox" onchange="toggleArrows(this)"> Show trend </input>
-    <button id = "play" onclick="playAnimation(this)">Play</button>
-    <br>
-    <br>
+    <div id="titlediv">
+		<header>
+			<h1>Life Expectancy Visualized</h1>
+		</header>
+	</div>
+	<div id="sliderdiv"><svg id="slider" width="1215" height="50"></svg></div>
+	<div id="controlpanel">
+		<input type="checkbox" id="futureBox" onchange="toggleFutureProjections(this)"> Include future projections </input>
+		<input type="checkbox" id="arrowBox" onchange="toggleArrows(this)"> Show trend </input>
+		<button id = "play" onclick="playAnimation(this)">Play</button>
+	</div>
     <svg id="map1" width="1215" height="650">
     </svg>
 	<br/>
 	<div id="barchart"></div>
 	<div id="timeline"></div>
-	<div id="infochart"></div>
+	<div id="infochart">Info Panel</div>
 </div>
 
 </body>
