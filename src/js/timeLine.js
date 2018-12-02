@@ -1,8 +1,26 @@
 /** Class implementing the bar chart view. */
 class TimeLine {
 
-  constructor(worldData, countries, beginYear, endYear, currentYear) {
-    this.worldData = worldData.slice();
+  constructor(beginYear, endYear, currentYear) {
+
+	this.year = currentYear;
+	this.beginYear = beginYear;
+	this.endYear = endYear;
+  }
+
+  //add data for continents
+  addContinentData(continentData)
+  {
+	  console.log("Received Continent Data");
+	  console.log(continentData);
+	  this.continentData = continentData;
+	  this.finishConstruction();
+  }
+  
+  //add worldData
+  addCountryData(countryData, countries)
+  {
+    this.worldData = countryData.slice();
 
 	if( countries != null && countries.length > 0 )
 		this.countries = countries.slice();
@@ -14,15 +32,19 @@ class TimeLine {
 			if( data.geo == c )
 				this.currentData.push(data);
 
-	this.year = currentYear;
-	this.beginYear = beginYear;
-	this.endYear = endYear;
-	this.draw();
-
-	this.barChart = new BarChart(this.currentData, this.countries, this.year);
-	this.info = new InfoPanel(this.currentData, this.countries[0]);
+	this.finishConstruction();
   }
-
+  
+  //build barChart and infoPanel then draw
+  finishConstruction()
+  {
+	  if( this.worldData == null || this.continentData == null ) 
+		  return;
+	  this.draw();
+	  this.barChart = new BarChart(this.currentData, this.countries, this.year);
+	  this.info = new InfoPanel(this.currentData, this.countries[0]);
+  }
+  
   //construct axes and scale
   draw() {
 
@@ -94,7 +116,10 @@ class TimeLine {
 						  } 
 		    )
 	  ;
-
+	  
+	  let now = new Date().getYear()+1900;
+alert(now);
+ 
 
 	  //draw x-axis
 	  svg.append("g")
@@ -125,7 +150,23 @@ class TimeLine {
 		.html( this.year )
 	  ;
  
-  }
+	  //draw now solid line
+	  svg.append("path")
+		.style("stroke","black")
+		.style("stroke-width","2")
+		.attr("id","nowyearline")
+		.attr("d", "M " + xScale(now) + ",0 L " + xScale(now) + "," + (height-vPadding) )
+	  ;
+	  
+	  svg.append("text")
+		.attr("x", xScale(this.year + 1) )
+		.attr("y", yScale(100) )
+		.attr("class", "nowlineyear")
+		.attr("transform",`rotate(90,${xScale(now + 1)},${yScale(100)})`)
+		.html( "Present Year" )
+	  ;
+ 
+ }
 
   updateYear(currentYear) {
 	this.year = currentYear;

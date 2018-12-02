@@ -4,7 +4,7 @@ let continents = [];
 let min_year = 1850;
 let max_year = 2018;
 let selected_year = 1850;
-let time;
+let time = new TimeLine(min_year, max_year, selected_year);
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
@@ -14,7 +14,7 @@ d3.csv("data/lex.csv", d => d)
         countries.push(country);
       }
     }
-    time = new TimeLine(countries, null, min_year, max_year, selected_year);
+    time.addCountryData(countries);
 });
 
 
@@ -25,6 +25,7 @@ d3.csv("data/lexContinents.csv", d => d)
       let continent = data[i];
       continents.push(continent);
     }
+	time.addContinentData(continents);
 });
 
 
@@ -84,4 +85,5 @@ function toggleFutureProjections(checkbox){
     selected_year=1850;
   }
   slider.makeSlider(min_year, max_year, selected_year);
+  time.updateYearRange(min_year, max_year);
 }
