@@ -37,7 +37,7 @@
 }
 
 .inactive {
-  opacity: 0;
+  fill-opacity: 0;
 }
 
 .freeze * {
@@ -178,6 +178,10 @@ path.country5 {
 
 #barchartsvg .selected, #timeline .selected, #map1 .selected{
 	stroke-width: 3px;
+}
+
+#map1 .selected{
+	stroke: cyan;
 }
 
 text.selected{

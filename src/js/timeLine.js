@@ -199,11 +199,23 @@ class TimeLine {
   }
   
   hoverOnCountry( country ) {
-	console.log("Hover on " + country );	  
+	console.log("Hover on " + country );
+	this.currentHoverCountry = country;
+	d3.select("#" + country).classed("selected",true);
+	d3.select("#" + country + "Arrow").classed("selected",true);
+	d3.select("#usehover").selectAll("use").data([country]).enter()
+		.append("use")
+		.attr("id","usehover")
+		.attr("xlink:href", d => "#" + d)
+	;
   }
   
   hoverOffCountry( country ) {
-	console.log("Hover off " + country );	  	  
+	console.log("Hover off " + country );  	  
+	d3.select("#" + country).classed("selected",false);
+	d3.select("#" + country + "Arrow").classed("selected",false);
+	d3.select("#usehover").remove();
+	
   }
   
   toggleCountry( country ) {

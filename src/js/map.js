@@ -28,7 +28,7 @@ class Map {
       .attr("id", d => d.id)
       .attr("d", path)
       .attr("fill", "lightGray")
-      .attr("stroke", "white")
+      .attr("stroke", "white");
 
     enter.append("path")
         .classed("arrow", true)
