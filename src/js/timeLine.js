@@ -6,6 +6,7 @@ class TimeLine {
 	this.year = currentYear;
 	this.beginYear = beginYear;
 	this.endYear = endYear;
+	this.maxCountries = 6;
   }
 
   //add data for continents
@@ -21,17 +22,12 @@ class TimeLine {
   addCountryData(countryData, countries)
   {
     this.worldData = countryData.slice();
-
-	if( countries != null && countries.length > 0 )
-		this.countries = countries.slice();
-	else
-		this.countries = ["USA","RUS","CAN","JPN","ITA","BRA"];
+	if( countries == null || countries.length <= 0 )
+		countries = ["USA","RUS","CAN","JPN","ITA","BRA"];
+	this.countries = [];
 	this.currentData = [];
-	for( let c of this.countries )
-		for( let data of this.worldData )
-			if( data.geo == c )
-				this.currentData.push(data);
-
+	for( let c of countries )
+		this.addCountry(c);
 	this.finishConstruction();
   }
   
@@ -174,28 +170,40 @@ class TimeLine {
 	this.redraw();
   }
 
-  updateCountries(newCountryList) {
-	  this.countries = newCountryList.slice();
-	  this.redraw();
-  }
-
   addCountry( newCountry ){
 	  for( let c of this.countries )
 		  if( c == newCountry )
-			  return;
-	  this.countries.push( newCountry );
-	  this.redraw();
+			  return false;
+	  for( let data of this.worldData )
+		  if( data.geo == newCountry )
+		  {
+			  this.currentData.push(data);
+			  this.countries.push( newCountry );
+			  if( this.currentData.length > this.maxCountries )
+			  {
+				  this.currentData.shift();
+				  this.countries.shift();
+			  }
+			  d3.select("#" + newCountry + "Arrow").classed("included",true);
+			  d3.select("#useclick" + newCountry).selectAll("use").data([newCountry]).enter()
+			      .append("use")
+		          .attr("id",d => "useclick" + d)
+				  .attr("xlink:href", d => "#" + d )
+			  break;
+		  }
+	  this.finishConstruction();
+	  return true;
   }
 
   removeCountry( country ){
-	  for( let c of this.countries )
-		  this.countries = this.countries.filter( c => c == country );
-	  this.redraw();
+	  this.countries = this.countries.filter( c => c != country );
+	  this.currentData = this.currentData.filter( c => c.geo != country );
+	  d3.select("#" + country + "Arrow").classed("included",false);
+	  d3.select("#useclick" + country).remove();
+	  this.finishConstruction();
   }
   
   hoverOnCountry( country ) {
-	console.log("Hover on " + country );
-	this.currentHoverCountry = country;
 	d3.select("#" + country + "Arrow").classed("selected",true);
 	d3.select("#usehover").selectAll("use").data([country]).enter()
 		.append("use")
@@ -207,7 +215,6 @@ class TimeLine {
   }
   
   hoverOffCountry( country ) {
-	console.log("Hover off " + country );  	  
 	d3.select("#" + country + "Arrow").classed("selected",false);
 	d3.select("#usehover").remove();
 	d3.select("#" + country + "Bar").classed("selected",false);
@@ -216,7 +223,31 @@ class TimeLine {
   
   toggleCountry( country ) {
 	console.log("Toggle " + country );
+	if( this.addCountry(country) )
+	{
+		d3.select("#" + country).classed("included",true);
+	}
+	else
+	{
+		this.removeCountry(country);
+		d3.select("#" + country).classed("included",false);
+	}
+	
   }
+  
+  highlightCountries() {
+	console.log("Highlighting");
+  console.log(this.countries);
+	  for( let data of this.countries )
+	  {
+			  d3.select("#" + data + "Arrow").classed("included",true);
+			  d3.select("#useclick" + data).selectAll("use").data([data]).enter()
+			      .append("use")
+		          .attr("id",d => "useclick" + d)
+				  .attr("xlink:href", d => "#" + d );
+	  }
+  }  
+  
   
   redraw(){
 	  this.draw();

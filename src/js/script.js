@@ -34,6 +34,7 @@ let map = new Map(countries);
 d3.json("data/world.json")
     .then(function(data) {
       map.drawMap(data);
+	  time.highlightCountries();
 });
 
 let slider = new Slider();

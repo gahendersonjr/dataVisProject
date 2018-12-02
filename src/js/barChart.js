@@ -46,7 +46,7 @@ class BarChart {
 		.attr("height",250)
 		.attr("id","barchartsvg")
 	  ;
-console.log(this.worldData);
+
 	  svg.selectAll("rect")
 		.data(this.worldData)
 		.enter()
