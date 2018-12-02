@@ -107,14 +107,9 @@ class TimeLine {
 		.attr("class",(d,i)=>"country"+i)
 		.attr("d", lineMaker )
 		.attr("fill","none")
-		.on( "mouseover", function() { 
-							  d3.selectAll("." + d3.select(this).attr("class")).classed("selected",true);
-						  } 
-		    )
-		.on( "mouseout", function() { 
-							  d3.selectAll(".selected").classed("selected",false);
-						  } 
-		    )
+		.attr("id", d => d.geo + "Trend")
+		.on( "mouseover", d => time.hoverOnCountry(d.geo) )
+		.on( "mouseout", d => time.hoverOffCountry(d.geo) )
 	  ;
 	  
 	  let now = new Date().getYear()+1900;
@@ -201,21 +196,22 @@ class TimeLine {
   hoverOnCountry( country ) {
 	console.log("Hover on " + country );
 	this.currentHoverCountry = country;
-	d3.select("#" + country).classed("selected",true);
 	d3.select("#" + country + "Arrow").classed("selected",true);
 	d3.select("#usehover").selectAll("use").data([country]).enter()
 		.append("use")
 		.attr("id","usehover")
-		.attr("xlink:href", d => "#" + d)
+		.attr("xlink:href", d => "#" + d )
+	d3.select("#" + country + "Bar").classed("selected",true);
+	d3.select("#" + country + "Trend").classed("selected",true);
 	;
   }
   
   hoverOffCountry( country ) {
 	console.log("Hover off " + country );  	  
-	d3.select("#" + country).classed("selected",false);
 	d3.select("#" + country + "Arrow").classed("selected",false);
 	d3.select("#usehover").remove();
-	
+	d3.select("#" + country + "Bar").classed("selected",false);
+	d3.select("#" + country + "Trend").classed("selected",false);	
   }
   
   toggleCountry( country ) {

@@ -46,7 +46,7 @@ class BarChart {
 		.attr("height",250)
 		.attr("id","barchartsvg")
 	  ;
-
+console.log(this.worldData);
 	  svg.selectAll("rect")
 		.data(this.worldData)
 		.enter()
@@ -55,16 +55,11 @@ class BarChart {
 		.attr("y",d => yScale(d[this.year]))
 		.attr("width", xScale.bandwidth() )
 		.attr("height", d => yScale(0) - yScale(d[this.year]) )
+		.attr("id",d => d.geo + "Bar")
 		.style("stroke", "black" )
 		.attr("class", (d,i) => "country" + i)
-		.on( "mouseover", function() { 
-							  d3.selectAll("." + d3.select(this).attr("class")).classed("selected",true);
-						  } 
-		    )
-		.on( "mouseout", function() { 
-							  d3.selectAll(".selected").classed("selected",false);
-						  } 
-		    )
+		.on( "mouseover", d => time.hoverOnCountry(d.geo) )
+		.on( "mouseout", d => time.hoverOffCountry(d.geo) )
 	  ;
 
 	  svg.selectAll("text")
