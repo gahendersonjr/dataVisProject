@@ -28,7 +28,7 @@ class Map {
       .attr("id", d => d.id)
       .attr("d", path)
       .attr("fill", "lightGray")
-      .attr("stroke", "white");
+      .attr("stroke", "white")
 
     enter.append("path")
         .classed("arrow", true)
@@ -36,7 +36,10 @@ class Map {
         .attr("id", d => d.id + "Arrow")
         .attr("d", path)
         .attr("fill", "none")
-        .classed("inactive", true);
+        .classed("inactive", true)
+   	    .on("click", d => time.toggleCountry(d.id) )
+   	    .on("mouseover", d => time.hoverOnCountry(d.id) )
+   	    .on("mouseout", d => time.hoverOffCountry(d.id) );
 
   let year = 2018;
   this.updateCountry(year);

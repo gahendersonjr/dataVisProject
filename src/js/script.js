@@ -4,7 +4,8 @@ let continents = [];
 let min_year = 1850;
 let max_year = 2018;
 let selected_year = 1850;
-let time = new TimeLine(min_year, max_year, selected_year);
+var time = new TimeLine(min_year, max_year, selected_year);
+
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){

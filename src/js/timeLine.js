@@ -198,6 +198,18 @@ class TimeLine {
 	  this.redraw();
   }
   
+  hoverOnCountry( country ) {
+	console.log("Hover on " + country );	  
+  }
+  
+  hoverOffCountry( country ) {
+	console.log("Hover off " + country );	  	  
+  }
+  
+  toggleCountry( country ) {
+	console.log("Toggle " + country );
+  }
+  
   redraw(){
 	  this.draw();
   }
