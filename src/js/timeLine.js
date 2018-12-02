@@ -35,7 +35,7 @@ class TimeLine {
 	  let xScale = d3.scaleLinear()
 		.domain([this.beginYear,this.endYear])
 		.range([hPadding, width-hPadding]);
-	  let xAxis = d3.axisBottom().scale(xScale).ticks(18);
+	  let xAxis = d3.axisBottom().scale(xScale).ticks(36);
 
 	  let yScale = d3.scaleLinear()
 		.domain([0,100])
@@ -75,7 +75,14 @@ class TimeLine {
 		.attr("class",(d,i)=>"country"+i)
 		.attr("d", lineMaker )
 		.attr("fill","none")
-		.attr("stroke","blue")
+		.on( "mouseover", function() { 
+							  d3.selectAll("." + d3.select(this).attr("class")).classed("selected",true);
+						  } 
+		    )
+		.on( "mouseout", function() { 
+							  d3.selectAll(".selected").classed("selected",false);
+						  } 
+		    )
 	  ;
 
 

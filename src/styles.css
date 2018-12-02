@@ -28,6 +28,19 @@
 .freeze * {
 	pointer-events: none;
 }
+    left: 0px;
+    width: 1215px;
+	height: 650px;
+    border: 1px solid black;	
+}
+	
+div#controlpanel {
+	position: absolute;
+    top: 76px;
+	left: 1216px;
+    right: 0px;
+	height: 50px;
+	line-height: 50px;
     border: 1px solid black;
 	text-align: center;
     display: inline-block;
@@ -70,5 +83,61 @@ div#timeline {
     border: 1px solid black;
 	text-align: center;
 }
+
+rect.country0 {
+	fill: blue;
+}
+path.country0 {
+	stroke: blue;
+}
+
+rect.country1 {
+	fill: green;
+}
+path.country1 {
+	stroke: green;
+}
+
+rect.country2 {
+	fill: red;
+}
+path.country2 {
+	stroke: red;
+}
+
+rect.country3 {
+	fill: pink;
+}
+path.country3 {
+	stroke: pink;
+}
+
+rect.country4 {
+	fill: purple;
+}
+path.country4 {
+	stroke: purple;
+}
+
+rect.country5 {
+	fill: orange;
+}
+path.country5 {
+	stroke: orange;
+}
+
+#barchartsvg rect, #barchartsvg path {
+	stroke-width: 1px;
+}
+
+#barchartsvg .selected, #timeline .selected{
+	stroke-width: 3px;
+}
+
+text.selected{
+	font-weight: bold;
+}
+
+
 
 

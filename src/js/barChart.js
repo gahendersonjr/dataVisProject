@@ -48,7 +48,38 @@ class BarChart {
 		.attr("id","barchartsvg")
 	  ;
 
-	  svg.append("g")
+	  svg.selectAll("rect")
+		.data(this.worldData)
+		.enter()
+		.append("rect")
+		.attr("x",d => xScale(d["geo.name"]) )
+		.attr("y",d => yScale(d[this.year]))
+		.attr("width", xScale.bandwidth() )
+		.attr("height", d => yScale(0) - yScale(d[this.year]) )
+		.style("stroke", "black" )
+		.attr("class", (d,i) => "country" + i)
+		.on( "mouseover", function() { 
+							  d3.selectAll("." + d3.select(this).attr("class")).classed("selected",true);
+						  } 
+		    )
+		.on( "mouseout", function() { 
+							  d3.selectAll(".selected").classed("selected",false);
+						  } 
+		    )
+	  ;
+
+	  svg.selectAll("text")
+		.data(this.worldData)
+		.enter()
+		.append("text")
+		.attr("x",d => xScale(d["geo.name"]) + xScale.bandwidth()/ 2 )
+		.attr("y",d => yScale(d[this.year]) - 3 )
+		.attr("class", (d,i) => "country" + i)
+		.classed("bartext",true)
+		.html( d => Math.round(d[this.year],0) )
+      ;
+
+  	  svg.append("g")
 		.attr("class","axis")
 		.attr("transform",`translate(0,${height-vPadding})`)
 		.call(xAxis);
@@ -58,27 +89,8 @@ class BarChart {
 		.attr("transform",`translate(${hPadding},0)`)
 		.call(yAxis);
 
-	  svg.selectAll("rect")
-		.data(this.worldData)
-		.enter()
-		.append("rect")
-		.attr("x",d => xScale(d["geo.name"]) )
-		.attr("y",d => yScale(d[this.year]))
-		.attr("width", xScale.bandwidth() )
-		.attr("height", d => yScale(0) - yScale(d[this.year]) )
-		.attr("class", (d,i) => "country" + i)
-	  ;
-/*
-	  svg.append("path")
-		.style("stroke","black")
-		.style("stroke-width","2")
-		.attr("id","currentyearline")
-		.style("stroke-dasharray","2 2")
-		.attr("d", "M " + xScale(this.year) + ",0 L " + xScale(this.year) + "," + (height-vPadding) )
-	  ;
-*/
-
   }
+
 
   updateYear(newYear) {
 	this.year = newYear;
