@@ -2,6 +2,10 @@
      border: 1px solid black;
 }
 
+.bartext {
+	text-anchor: middle;
+}
+
 .sliderTrack {
   stroke: black;
   stroke-width: 5px;
@@ -28,6 +32,37 @@
 .freeze * {
 	pointer-events: none;
 }
+
+
+
+div#titlediv {
+	position: absolute;
+    top: 0;
+    left: 0px;
+    width: 29.85%;
+	height: 75px;
+	text-align: center;
+    border: 1px solid #000000;
+}
+
+div#sliderdiv {
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 70%;
+	height: 75px;
+    border: 1px solid black;
+}
+
+div#sliderdiv svg {
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%,-50%);	
+}
+
+#map1 {
+	position: absolute;
+    top: 76px;
     left: 0px;
     width: 1215px;
 	height: 650px;
