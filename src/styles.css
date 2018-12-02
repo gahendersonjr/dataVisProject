@@ -176,12 +176,17 @@ path.country5 {
 	stroke-width: 1px;
 }
 
-#barchartsvg .selected, #timeline .selected{
+#barchartsvg .selected, #timeline .selected, #map1 .selected{
 	stroke-width: 3px;
 }
 
 text.selected{
 	font-weight: bold;
+}
+
+#map1 .included {
+	stroke: yellow;
+	stroke-width: 3px;
 }
 
 
