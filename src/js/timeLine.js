@@ -68,7 +68,17 @@ class TimeLine {
 		  return p;
 	  }
 
+	  //draw gridlines
 	  svg.selectAll("path")
+		.data([20,40,60,80,100])
+		.enter()
+		.append("path")
+		.attr("class","gridline")
+		.attr("d", d => "M " + xScale(this.beginYear) + "," + yScale(d) + " L " + xScale(this.endYear) + "," + yScale(d))
+	  ;
+	  
+	  //draw country trendlines
+	  svg.selectAll("path:not(.gridline)")
 		.data(this.currentData)
 		.enter()
 		.append("path")
@@ -86,17 +96,19 @@ class TimeLine {
 	  ;
 
 
-
+	  //draw x-axis
 	  svg.append("g")
 		.attr("class","axis")
 		.attr("transform",`translate(0,${height-vPadding})`)
 		.call(xAxis);
 
+	  //draw y-axis
 	  svg.append("g")
 		.attr("class","axis")
 		.attr("transform",`translate(${hPadding},0)`)
 		.call(yAxis);
 
+	  //draw current year dashed line
 	  svg.append("path")
 		.style("stroke","black")
 		.style("stroke-width","2")
@@ -104,13 +116,21 @@ class TimeLine {
 		.style("stroke-dasharray","2 2")
 		.attr("d", "M " + xScale(this.year) + ",0 L " + xScale(this.year) + "," + (height-vPadding) )
 	  ;
-
+	  
+	  svg.append("text")
+		.attr("x", xScale(this.year + 1) )
+		.attr("y", yScale(100) )
+		.attr("class", "timelineyear")
+		.attr("transform",`rotate(90,${xScale(this.year + 1)},${yScale(100)})`)
+		.html( this.year )
+	  ;
+ 
   }
 
   updateYear(currentYear) {
 	this.year = currentYear;
     this.barChart.updateYear(currentYear);
-	this.draw();
+	this.redraw();
   }
 
   updateYearRange(newBeginYear, newEndYear) {
@@ -137,11 +157,9 @@ class TimeLine {
 		  this.countries = this.countries.filter( c => c == country );
 	  this.redraw();
   }
-
-  //update graphics to reflect current data
-  redraw()
-  {
-	  console.log("redraw timeLine " + this.year);
+  
+  redraw(){
+	  this.draw();
   }
 
 }

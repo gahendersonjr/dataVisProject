@@ -3,7 +3,7 @@ class BarChart {
 
   constructor(worldData, countries, currentYear) {
     this.worldData = worldData.slice();
-	console.log(this.worldData);
+
     this.countries = countries.slice();
     this.year = currentYear;
 	this.draw();
@@ -23,7 +23,6 @@ class BarChart {
 	  let names = [];
 	  for( let c of this.worldData )
 		  names.push(c["geo.name"]);
-		console.log(names);
 
 	  let xScale = d3.scaleBand()
 		.domain(names)
@@ -94,7 +93,7 @@ class BarChart {
 
   updateYear(newYear) {
 	this.year = newYear;
-	this.draw();
+	this.redraw();
   }
 
   updateCountries(newCountryList) {
@@ -117,7 +116,7 @@ class BarChart {
   //update graphics to reflect current data
   redraw()
   {
-	  console.log("redraw barChart " + this.year);
+	  this.draw();
   }
 
 }
