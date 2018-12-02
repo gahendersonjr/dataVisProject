@@ -118,7 +118,6 @@ class TimeLine {
 	  ;
 	  
 	  let now = new Date().getYear()+1900;
-alert(now);
  
 
 	  //draw x-axis
@@ -159,7 +158,7 @@ alert(now);
 	  ;
 	  
 	  svg.append("text")
-		.attr("x", xScale(this.year + 1) )
+		.attr("x", xScale(now + 1) )
 		.attr("y", yScale(100) )
 		.attr("class", "nowlineyear")
 		.attr("transform",`rotate(90,${xScale(now + 1)},${yScale(100)})`)
