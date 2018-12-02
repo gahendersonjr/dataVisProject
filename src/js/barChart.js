@@ -94,7 +94,7 @@ class BarChart {
 
   updateYear(newYear) {
 	this.year = newYear;
-	this.redraw();
+	this.draw();
   }
 
   updateCountries(newCountryList) {

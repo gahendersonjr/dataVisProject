@@ -109,8 +109,8 @@ class TimeLine {
 
   updateYear(currentYear) {
 	this.year = currentYear;
-  this.barChart.updateYear(currentYear);
-	this.redraw();
+    this.barChart.updateYear(currentYear);
+	this.draw();
   }
 
   updateYearRange(newBeginYear, newEndYear) {
