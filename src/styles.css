@@ -106,9 +106,29 @@ div#barchart {
     border: 1px solid black;
 	text-align: center;
 }
-div#barchart svg {
+#continentsvg {
 	position: absolute;
-	top: 63px;
+	top: 30px;
+	left: 52px;
+	height: 50px
+	width: 600px;
+}
+
+.continentLabelRect{
+	fill: white;
+	fill-opacity: 0;
+	stroke: black;
+	stroke:width: 3px;
+}
+
+.continentLabel{
+	text-anchor: middle;
+	alignment-baseline: middle;
+}
+
+#barchartsvg {
+	position: absolute;
+	top: 80px;
 	left: 102px;
 }
 
@@ -139,7 +159,7 @@ div#timeline svg{
 }
 
 rect.country0 {
-	fill: cyan;
+	fill: blue;
 }
 path.country0 {
 	stroke: blue;
@@ -189,7 +209,7 @@ path.country5 {
 }
 
 #map1 .selected{
-	stroke-width: 1px;
+	stroke-width: 2px;
 	stroke: cyan;
 }
 
@@ -199,5 +219,14 @@ text.selected{
 
 #map1 .included {
 	stroke: yellow;
-	stroke-width: 1px;
+	stroke-width: 2px;
+}
+
+#continentsvg .selected {
+	fill: cyan;
+	fill-opacity: 0.5;
+}
+#continentsvg .included {
+	fill: yellow;
+	fill-opacity: 0.5;
 }

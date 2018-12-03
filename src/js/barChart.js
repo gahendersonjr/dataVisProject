@@ -35,15 +35,15 @@ class BarChart {
 		.range([height - vPadding, vPadding]);
 	  let yAxis = d3.axisLeft().scale(yScale);
 
-
 	  d3.select("#barchartsvg").remove();
-
-	  let svg = d3.select("#barchart").selectAll("svg")
+  
+	  //build svg
+	  let svg = d3.select("#barchart").selectAll("#barchartsvg")
 		.data([0])
 		.enter()
 		.append("svg")
-		.attr("width",500)
-		.attr("height",250)
+		.attr("width",width)
+		.attr("height",height)
 		.attr("id","barchartsvg")
 	  ;
 

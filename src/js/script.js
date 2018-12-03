@@ -22,9 +22,11 @@ d3.csv("data/lex.csv", d => d)
 
 d3.csv("data/lexContinents.csv", d => d)
   .then(function(data) {
-    for (let i in data){
-      let continent = data[i];
-      continents.push(continent);
+    for (let continent of data){
+	  if( continent["geo"] == "world" )
+		continents.splice(0,0,continent);
+	  else
+		continents.push(continent);
     }
 	time.addContinentData(continents);
 });

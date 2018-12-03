@@ -1,4 +1,3 @@
-/** Class implementing the bar chart view. */
 class TimeLine {
 
   constructor(beginYear, endYear, currentYear) {
@@ -7,14 +6,52 @@ class TimeLine {
 	this.beginYear = beginYear;
 	this.endYear = endYear;
 	this.maxCountries = 6;
+	this.maxContinents = 2;
+	this.countries = [];
+	this.continents = 0;
+	this.world = 0;
+	this.currentData = [];
+	this.worldData = [];
   }
 
   //add data for continents
   addContinentData(continentData)
   {
-	  console.log("Received Continent Data");
-	  console.log(continentData);
 	  this.continentData = continentData;
+	  this.addCountry(this.continentData[0].geo);
+	  this.addCountry(this.continentData[1].geo);
+
+	  //build continent selectors
+	  let svg = d3.select("#barchart").selectAll("#continentsvg")
+		.data([0])
+		.enter()
+		.append("svg")
+		.attr("width",600)
+		.attr("height",50)
+		.attr("id","continentsvg")
+	  ;
+
+	  svg.selectAll("text").data(time.continentData).enter()
+		.append("text")
+		.attr("x", (d,i) => 55 + 120*i)
+		.attr("y", 13)
+		.attr("class","continentLabel")
+		.html( d => d["geo.name"] )
+	  ;	  
+	  
+	  svg.selectAll("rect").data(time.continentData).enter()
+		.append("rect")
+		.attr("x", (d,i) => 120*i)
+		.attr("y", 0)
+		.attr("width", 110)
+		.attr("height", 25)
+		.attr("class","continentLabelRect")
+		.attr("id", d => d.geo + "LabelRect" )
+   	    .on("click", d => time.toggleCountry(d.geo) )
+   	    .on("mouseover", d => time.hoverOnCountry(d.geo) )
+   	    .on("mouseout", d => time.hoverOffCountry(d.geo) );		
+	  ;
+	  this.highlightContinents();
 	  this.finishConstruction();
   }
   
@@ -24,8 +61,6 @@ class TimeLine {
     this.worldData = countryData.slice();
 	if( countries == null || countries.length <= 0 )
 		countries = ["USA","RUS","CAN","JPN","ITA","BRA"];
-	this.countries = [];
-	this.currentData = [];
 	for( let c of countries )
 		this.addCountry(c);
 	this.finishConstruction();
@@ -38,7 +73,7 @@ class TimeLine {
 		  return;
 	  this.draw();
 	  this.barChart = new BarChart(this.currentData, this.countries, this.year);
-	  this.info = new InfoPanel(this.currentData, this.countries[0]);
+	  this.info = new InfoPanel(this.currentData);
   }
   
   //construct axes and scale
@@ -172,9 +207,39 @@ class TimeLine {
   }
 
   addCountry( newCountry ){
-	  for( let c of this.countries )
-		  if( c == newCountry )
+	  for( let c of this.currentData )
+		  if( c.geo == newCountry )
 			  return false;
+	  if( newCountry == "world" )
+	  {
+		this.world = 1;
+		this.currentData.splice(0, 0, this.continentData[0]);
+  	    d3.select("#" + newCountry + "LabelRect").classed("included",true);
+  	    while(this.world + this.continents + this.countries.length > this.maxCountries)
+		    this.removeCountry(this.currentData[this.world+this.continents].geo);
+		this.finishConstruction();
+		return true;
+	  }
+	  if( newCountry.length > 3 )
+	  {
+		  for( let continent of this.continentData)
+		  {
+			  if( continent.geo == newCountry )
+			  {
+				  while(this.continents >= this.maxContinents)
+					  this.removeCountry(this.currentData[this.world].geo);
+				  this.currentData.splice(this.world + this.continents, 0, continent);
+				  this.continents++;
+				  d3.select("#" + newCountry + "LabelRect").classed("included",true);
+				  while(this.world + this.continents + this.countries.length > this.maxCountries)
+					  this.removeCountry(this.currentData[this.world+this.continents].geo);
+				  this.finishConstruction();
+ 				  return true;
+			  }
+		  }
+		  return false;
+	  }
+		  
 	  for( let data of this.worldData )
 		  if( data.geo == newCountry )
 		  {
@@ -186,7 +251,7 @@ class TimeLine {
 			  d3.select("#useclick" + newCountry).selectAll("use").data([newCountry]).enter()
 			      .append("use")
 		          .attr("id",d => "useclick" + d)
-				  .attr("xlink:href", d => "#" + d )
+				  .attr("xlink:href", d => "#" + d  + "Arrow")
 			  break;
 		  }
 	  this.finishConstruction();
@@ -196,23 +261,35 @@ class TimeLine {
   removeCountry( country ){
 	  this.countries = this.countries.filter( c => c != country );
 	  this.currentData = this.currentData.filter( c => c.geo != country );
+	  d3.select("#" + country + "LabelRect").classed("included",false);
 	  d3.select("#" + country + "Arrow").classed("included",false);
 	  d3.select("#useclick" + country).remove();
+	  
+	  this.world = 0;
+	  this.continents = 0;
+	  for( let country of this.currentData )
+		  if( country.geo == "world" )
+				this.world++;
+			else if( country.geo.length > 3 )
+				this.continents++;
+	  
 	  this.finishConstruction();
   }
   
   hoverOnCountry( country ) {
+	d3.select("#" + country + "LabelRect").classed("selected",true);
 	d3.select("#" + country + "Arrow").classed("selected",true);
 	d3.select("#usehover").selectAll("use").data([country]).enter()
 		.append("use")
 		.attr("id","usehover")
-		.attr("xlink:href", d => "#" + d )
+		.attr("xlink:href", d => "#" + d  + "Arrow")
 	d3.select("#" + country + "Bar").classed("selected",true);
 	d3.select("#" + country + "Trend").classed("selected",true);
 	;
   }
   
   hoverOffCountry( country ) {
+	d3.select("#" + country + "LabelRect").classed("selected",false);
 	d3.select("#" + country + "Arrow").classed("selected",false);
 	d3.select("#usehover").remove();
 	d3.select("#" + country + "Bar").classed("selected",false);
@@ -220,22 +297,18 @@ class TimeLine {
   }
   
   toggleCountry( country ) {
-	console.log("Toggle " + country );
-	if( this.addCountry(country) )
-	{
-		d3.select("#" + country).classed("included",true);
-	}
-	else
+	if( !this.addCountry(country) )
 	{
 		this.removeCountry(country);
-		d3.select("#" + country).classed("included",false);
 	}
-	
   }
   
+  highlightContinents() {
+	for( let data of this.currentData )
+		d3.select("#" + data.geo + "LabelRect").classed("included",true);
+  }	  
+  
   highlightCountries() {
-	console.log("Highlighting");
-  console.log(this.countries);
 	  for( let data of this.countries )
 	  {
 			  d3.select("#" + data + "Arrow").classed("included",true);
@@ -250,5 +323,9 @@ class TimeLine {
   redraw(){
 	  this.draw();
   }
-
+  
+  printCounts()
+  {
+	  console.log("World: "+this.world+", Continents: "+this.continents+", Total:"+this.countries.length);  
+  }
 }
