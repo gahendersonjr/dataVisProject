@@ -14,7 +14,7 @@
 
 .timelineyear {
 	text-anchor: middle;
-	font-weight: bold;	
+	font-weight: bold;
 }
 
 .sliderTrack {
@@ -67,7 +67,7 @@ div#sliderdiv {
 
 div#sliderdiv svg {
 	position: absolute;
-	top: 22px; 
+	top: 22px;
 	left: 64px;
 }
 
@@ -77,9 +77,9 @@ div#sliderdiv svg {
     left: 0px;
     width: 1215px;
 	height: 650px;
-    border: 1px solid black;	
+    border: 1px solid black;
 }
-	
+
 div#controlpanel {
 	position: absolute;
     top: 76px;
@@ -104,7 +104,7 @@ div#barchart {
 }
 div#barchart svg {
 	position: absolute;
-	top: 63px; 
+	top: 63px;
 	left: 102px;
 }
 
@@ -131,7 +131,7 @@ div#timeline {
 
 div#timeline svg{
 	position: absolute;
-	left: 48px;
+	left: 10px;
 }
 
 rect.country0 {
@@ -197,7 +197,3 @@ text.selected{
 	stroke: yellow;
 	stroke-width: 1px;
 }
-
-
-
-
