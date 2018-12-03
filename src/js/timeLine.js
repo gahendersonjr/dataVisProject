@@ -106,6 +106,7 @@ class TimeLine {
 		.attr("id", d => d.geo + "Trend")
 		.on( "mouseover", d => time.hoverOnCountry(d.geo) )
 		.on( "mouseout", d => time.hoverOffCountry(d.geo) )
+		.on( "click", d => time.removeCountry(d.geo) )
 	  ;
 	  
 	  let now = new Date().getYear()+1900;

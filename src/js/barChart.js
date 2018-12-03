@@ -60,6 +60,7 @@ class BarChart {
 		.attr("class", (d,i) => "country" + i)
 		.on( "mouseover", d => time.hoverOnCountry(d.geo) )
 		.on( "mouseout", d => time.hoverOffCountry(d.geo) )
+		.on( "click", d => time.removeCountry(d.geo) )
 	  ;
 
 	  svg.selectAll("text")
