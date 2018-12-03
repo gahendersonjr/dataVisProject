@@ -27,6 +27,8 @@ class Map {
     this.rotateScale = d3.scaleLinear()
       .domain([-1, 1])
       .range([180, 0]);
+
+  this.drawLegends();
     }
 
   drawMap(world) {
@@ -60,6 +62,85 @@ class Map {
 
   }
 
+  drawLegends(){
+    let values = [20,30,40,50,60,70,80,90,100];
+    let legendSvg = this.svg.selectAll("rect")
+      .data(values)
+      .enter();
+    let barWidth = 1215/10;
+    legendSvg
+      .append("rect")
+      .attr("x", (d,i) => i*(barWidth))
+      .attr("y", 630)
+      .attr("height", 20)
+      .attr("width", barWidth)
+      .attr("fill", d=>this.colorScale(d));
+    legendSvg
+      .append("text")
+      .attr("x", (d,i) => i*(barWidth)+ 30)
+      .attr("y", 625)
+      .attr("font-size", 14)
+      .text( d => d + " years");
+
+    this.svg
+      .append("rect")
+      .attr("x", barWidth * 9)
+      .attr("y", 630)
+      .attr("height", 20)
+      .attr("width", barWidth)
+      .attr("fill", "#fff0f2");
+    this.svg
+      .append("text")
+      .attr("x", barWidth*9 + 30)
+      .attr("y", 625)
+      .attr("font-size", 14)
+      .text("No data");
+
+
+    this.svg.append("path")
+        .attr("d", "M10,560 L15,545 L20,560")
+        .attr("fill", "green")
+        .classed("inactive", true)
+        .classed("arrowLegend", true);
+
+    this.svg.append("path")
+        .attr("d", "M10,585 L15,600 L20,585")
+        .attr("fill", "red")
+        .classed("inactive", true)
+        .classed("arrowLegend", true);
+
+    this.svg.append("path")
+        .attr("d", "M10,570 L10,580 L25,575 L10,570")
+        .attr("fill", "white")
+        .attr("stroke", "black")
+        .classed("inactive", true)
+        .classed("arrowLegend", true);
+
+    this.svg.append("text")
+      .attr("x", "30")
+      .attr("y", "560")
+      .attr("font-size", 14)
+      .classed("inactive", true)
+      .classed("arrowLegend", true)
+      .text("Trending upwards");
+
+    this.svg.append("text")
+      .attr("x", "30")
+      .attr("y", "580")
+      .attr("font-size", 14)
+      .classed("inactive", true)
+      .classed("arrowLegend", true)
+      .text("No Change");
+
+    this.svg.append("text")
+      .attr("x", "30")
+      .attr("y", "600")
+      .attr("font-size", 14)
+      .classed("inactive", true)
+      .classed("arrowLegend", true)
+      .text("Trending downwards");
+  }
+
   createPatterns(){
     this.g.append("defs")
       .selectAll("pattern")
@@ -81,7 +162,7 @@ class Map {
   updateCountry(year) {
     for(let i in this.countries) {
       let country = this.countries[i];
-      let color = "white";
+      let color = "#fff0f2";
       let hasData = false;
       if(country[year]){
         color = this.colorScale(country[year]);
@@ -98,10 +179,14 @@ class Map {
   showArrows(){
     d3.selectAll(".hasData")
       .classed("inactive", false);
+    d3.selectAll(".arrowLegend")
+      .classed("inactive", false);
   }
 
   removeArrows(){
     d3.selectAll(".arrow")
+      .classed("inactive", true);
+    d3.selectAll(".arrowLegend")
       .classed("inactive", true);
   }
 
@@ -111,6 +196,8 @@ class Map {
     let interval = 10;
     let rotate;
 
+    d3.selectAll(".arrowLegend")
+      .classed("inactive", !checked);
     for(let i in this.countries) {
       let country = countries[i];
        if(country[year-interval] && country[year]){
