@@ -104,7 +104,7 @@ class Map {
         .classed("arrowLegend", true);
 
     this.svg.append("path")
-        .attr("d", "M10,585 L15,600 L20,585")
+        .attr("d", "M10,590 L15,605 L20,590")
         .attr("fill", "red")
         .classed("inactive", true)
         .classed("arrowLegend", true);
