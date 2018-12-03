@@ -50,7 +50,7 @@ div#titlediv {
 	position: absolute;
     top: 0;
     left: 0px;
-    width: 29.85%;
+    width: 576px;
 	height: 75px;
 	text-align: center;
     border: 1px solid #000000;
@@ -59,16 +59,16 @@ div#titlediv {
 div#sliderdiv {
 	position: absolute;
     top: 0px;
-    right: 0px;
-    width: 70%;
+    left: 577px;
+    width: 1343px;
 	height: 75px;
     border: 1px solid black;
 }
 
 div#sliderdiv svg {
 	position: absolute;
-	top: 50%; left: 50%;
-	transform: translate(-50%,-50%);	
+	top: 22px; 
+	left: 64px;
 }
 
 #map1 {
@@ -84,7 +84,7 @@ div#controlpanel {
 	position: absolute;
     top: 76px;
 	left: 1216px;
-    right: 0px;
+	width: 704px;
 	height: 50px;
 	line-height: 50px;
     border: 1px solid black;
@@ -97,15 +97,15 @@ div#barchart {
 	position: absolute;
     top: 127px;
 	left: 1216px;
-    right: 0px;
+	width: 704px;
 	height: 400px;
     border: 1px solid black;
 	text-align: center;
 }
 div#barchart svg {
 	position: absolute;
-	top: 50%; left: 50%;
-	transform: translate(-50%,-50%);	
+	top: 63px; 
+	left: 102px;
 }
 
 
@@ -113,7 +113,7 @@ div#infochart {
 	position: absolute;
     top: 528px;
 	left: 1216px;
-    right: 0px;
+	width: 704px;
 	height: 198px;
     border: 1px solid black;
 	text-align: center;
@@ -123,15 +123,19 @@ div#timeline {
 	position: absolute;
     top: 727px;
 	left: 0px;
-	right: 0px;
-	width 100%
+	width 1920px;
 	height: 200px;
     border: 1px solid black;
 	text-align: center;
 }
 
+div#timeline svg{
+	position: absolute;
+	left: 48px;
+}
+
 rect.country0 {
-	fill: blue;
+	fill: cyan;
 }
 path.country0 {
 	stroke: blue;

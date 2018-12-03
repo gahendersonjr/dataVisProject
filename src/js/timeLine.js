@@ -44,7 +44,7 @@ class TimeLine {
   //construct axes and scale
   draw() {
 
-	  let width = 0.95*screen.width;
+	  let width = 1824;
 	  let height = 200;
 	  let vPadding = 20;
 	  let hPadding = 25;
