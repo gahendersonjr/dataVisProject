@@ -38,6 +38,9 @@
 
 .inactive {
   fill-opacity: 0;
+}
+
+.inactive.arrowLegend {
   stroke-opacity: 0;
 }
 
