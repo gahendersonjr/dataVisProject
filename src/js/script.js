@@ -62,7 +62,6 @@ async function playAnimation(button){
     }
     slider.setPosition(selected_year, min_year, max_year);
     map.updateCountry(selected_year);
-    map.updateArrows(selected_year);
     time.updateYear(selected_year);
     await sleep(300);
     selected_year++;

@@ -1,6 +1,7 @@
 
 class Map {
   constructor(countries) {
+    this.patternZoom= 1;
     this.svg = d3.select("#map1")
     this.g = this.svg.append("g");
     this.projection = d3.geoMercator().scale(200).translate([590, 400]);
@@ -13,6 +14,8 @@ class Map {
       .scaleExtent([1, 8])
       .on("zoom", function(d){
         this.g.attr("transform", d3.event.transform);
+        this.patternZoom = 1/d3.event.transform.k;
+        this.updateArrows(this.year);
       }.bind(this));
 
     this.svg.call(this.zoom);
@@ -53,7 +56,7 @@ class Map {
   let year = 2018;
   this.updateCountry(year);
   this.createPatterns();
-  this.updateArrows(year);
+  this.updateArrows(year, 1);
 
   }
 
@@ -69,6 +72,7 @@ class Map {
         .attr("height", 12)
         .attr("patternUnits", "userSpaceOnUse")
         .attr("id", d => d.geo.toUpperCase() + "Pattern")
+        .classed("pattern", true)
       .append("path")
         .attr("d", "M0,7.5 L2.5,0 L5,7.5")
         .attr("fill", "lightGray");
@@ -88,6 +92,7 @@ class Map {
       d3.select("#" + country.geo + "Arrow")
         .classed("hasData", hasData);
     }
+    this.updateArrows(year);
   }
 
   showArrows(){
@@ -101,6 +106,7 @@ class Map {
   }
 
   updateArrows(year){
+    this.year = year;
     let checked = document.getElementById("arrowBox").checked;
     let interval = 10;
     let rotate;
@@ -117,7 +123,7 @@ class Map {
          let pattern = this.g.select("#"  + country.geo + "Pattern");
 
          pattern
-          .attr("patternTransform", "rotate(" + rotate +")")
+          .attr("patternTransform", "rotate(" + rotate + ") scale(" + this.patternZoom + ")");
 
         this.g.select("#" + country.geo + "Arrow")
           .attr("fill", "url(#"  + country.geo + "Pattern)");
