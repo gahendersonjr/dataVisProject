@@ -177,7 +177,7 @@ path.country5 {
 }
 
 #barchartsvg .selected, #timeline .selected, #map1 .selected{
-	stroke-width: 3px;
+	stroke-width: 1px;
 }
 
 #map1 .selected{
@@ -190,7 +190,7 @@ text.selected{
 
 #map1 .included {
 	stroke: yellow;
-	stroke-width: 3px;
+	stroke-width: 1px;
 }
 
 

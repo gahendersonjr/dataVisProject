@@ -179,11 +179,8 @@ class TimeLine {
 		  {
 			  this.currentData.push(data);
 			  this.countries.push( newCountry );
-			  if( this.currentData.length > this.maxCountries )
-			  {
-				  this.currentData.shift();
-				  this.countries.shift();
-			  }
+			  while( this.currentData.length > this.maxCountries )
+				  this.removeCountry(this.countries[0]);
 			  d3.select("#" + newCountry + "Arrow").classed("included",true);
 			  d3.select("#useclick" + newCountry).selectAll("use").data([newCountry]).enter()
 			      .append("use")
