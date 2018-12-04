@@ -161,10 +161,10 @@ div#timeline svg{
 }
 
 rect.country0 {
-	fill: blue;
+	fill: rgb(100,100,100);
 }
 path.country0 {
-	stroke: blue;
+	stroke: rgb(100,100,100);
 }
 
 rect.country1 {
@@ -182,10 +182,10 @@ path.country2 {
 }
 
 rect.country3 {
-	fill: yellow;
+	fill: blue;
 }
 path.country3 {
-	stroke: yellow;
+	stroke: blue;
 }
 
 rect.country4 {
