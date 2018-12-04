@@ -225,6 +225,10 @@ text.selected{
 	font-weight: bold;
 }
 
+tr .selected {
+	font-weight: bold;
+}	
+
 #map1 .included {
 	stroke: yellow;
 	stroke-width: 2px;

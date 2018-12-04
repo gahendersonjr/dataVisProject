@@ -33,7 +33,7 @@ class InfoPanel {
 			data.push(row);
 			
 		}
-//console.log(data);	  
+//console.log(worldData);	  
 		d3.select("#infotable").selectAll("tr").remove();
 
 		if( worldData != null && worldData.length > 0 )
@@ -45,6 +45,10 @@ class InfoPanel {
 				.data(data)
 				.enter()
 				.append("tr")
+				.attr("id", function(d,i) { if( i == 0 ) return "TableHeadersRow";  return worldData[i-1]["geo"] + "Row"; } )
+				.attr("code", function(d,i) { if( i == 0 ) return "TableHeaders";  return worldData[i-1]["geo"]; } )
+				.on("mouseover", function(d,i){ if( i == 0 ) return; time.hoverOnCountry(worldData[i-1]["geo"]); } )
+				.on("mouseout", function(d,i){ if( i == 0 ) return; time.hoverOffCountry(worldData[i-1]["geo"]); } )					
 			;
 			  
 			d3.select("#infotable").selectAll("tr").selectAll("td")
