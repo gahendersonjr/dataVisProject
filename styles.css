@@ -49,7 +49,12 @@
 }
 
 #about {
-  margin-top: 32px;
+  margin-top: 4px;
+  margin-left: 20px;
+}
+
+#demobutton {
+  margin-top: 5px;
   margin-left: 20px;
 }
 
