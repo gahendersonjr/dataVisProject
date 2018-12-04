@@ -144,6 +144,9 @@ div#infochart {
 	
 }
 
+#infotable {
+	border-color: gray;
+}
 
 div#timeline {
 	position: absolute;
