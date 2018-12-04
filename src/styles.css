@@ -148,7 +148,18 @@ div#infochart {
 }
 
 #infotable {
-	border-color: gray;
+	border: 1px solid black;
+	width: 700px;
+}
+
+#infotable td {
+	border: 1px solid black;
+	width: 75px;
+}
+
+#TableHeadersRow {
+	font-weight: bold;
+
 }
 
 div#timeline {
@@ -225,8 +236,9 @@ text.selected{
 	font-weight: bold;
 }
 
-tr .selected {
+td .selected {
 	font-weight: bold;
+	bg-color: lightgray;
 }	
 
 #map1 .included {
