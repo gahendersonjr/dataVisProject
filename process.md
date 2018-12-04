@@ -141,11 +141,11 @@ Here is an image of the visualization without the trending arrows
 Here is an image of the with the trending arrows
 
 *With trending arrows*
-![With trending arrows](https://github.com/gahendersonjr/dataVisProject/blob/master/images/trendingArrows.jpg)
+![With trending arrows](https://github.com/gahendersonjr/dataVisProject/blob/master/images/trendingArrows.png)
 
 Here is an image of the visualization with future projections
 *Future Projections*
-![Future Projections](https://github.com/gahendersonjr/dataVisProject/blob/master/images/future.jpg)
+![Future Projections](https://github.com/gahendersonjr/dataVisProject/blob/master/images/future.png)
 
 ##### Evaluation
 
