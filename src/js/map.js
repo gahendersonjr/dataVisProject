@@ -88,7 +88,7 @@ class Map {
       .attr("y", 630)
       .attr("height", 20)
       .attr("width", barWidth)
-      .attr("fill", "#fff0f2");
+      .attr("fill", "#ffdae0");
     this.svg
       .append("text")
       .attr("x", barWidth*9 + 30)
@@ -162,7 +162,7 @@ class Map {
   updateCountry(year) {
     for(let i in this.countries) {
       let country = this.countries[i];
-      let color = "#fff0f2";
+      let color = "#ffdae0";
       let hasData = false;
       if(country[year]){
         color = this.colorScale(country[year]);
