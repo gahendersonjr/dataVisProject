@@ -265,6 +265,8 @@ class TimeLine {
 	  this.currentData = this.currentData.filter( c => c.geo != country );
 	  d3.select("#" + country + "LabelRect").classed("included",false);
 	  d3.select("#" + country + "Arrow").classed("included",false);
+	  d3.select("#" + country + "LabelRect").classed("selected",false);
+	  d3.select("#" + country + "Arrow").classed("selected",false);
 	  d3.select("#useclick" + country).remove();
 
 	  this.world = 0;
@@ -292,6 +294,7 @@ class TimeLine {
 
   hoverOffCountry( country ) {
 	d3.select("#" + country + "LabelRect").classed("selected",false);
+	d3.select("#" + country).classed("selected",false);
 	d3.select("#" + country + "Arrow").classed("selected",false);
 	d3.select("#usehover").remove();
 	d3.select("#" + country + "Bar").classed("selected",false);
@@ -302,6 +305,7 @@ class TimeLine {
 	if( !this.addCountry(country) )
 	{
 		this.removeCountry(country);
+		this.hoverOffCountry(country);
 	}
   }
 
