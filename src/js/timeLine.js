@@ -60,7 +60,7 @@ class TimeLine {
   {
     this.worldData = countryData.slice();
 	if( countries == null || countries.length <= 0 )
-		countries = ["USA","RUS","CAN","JPN","ITA","BRA"];
+		countries = ["USA","RUS","ITA","BRA"];
 	for( let c of countries )
 		this.addCountry(c);
 	this.finishConstruction();
@@ -87,8 +87,10 @@ class TimeLine {
 
 	  let xScale = d3.scaleLinear()
 		.domain([this.beginYear,this.endYear])
-		.range([hPadding, width-hPadding]);
-	  let xAxis = d3.axisBottom().scale(xScale).ticks(36);
+		.range([hPadding, width-hPadding])
+	  ;
+	  let xAxis = d3.axisBottom().scale(xScale).ticks(36)
+		.tickFormat( d3.format(".0f") );
 
 	  let yScale = d3.scaleLinear()
 		.domain([0,100])
