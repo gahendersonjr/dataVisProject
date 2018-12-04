@@ -105,7 +105,7 @@ div#barchart {
     top: 127px;
 	left: 1216px;
 	width: 704px;
-	height: 400px;
+	height: 350px;
     border: 1px solid black;
 	text-align: center;
 }
@@ -138,10 +138,10 @@ div#barchart {
 
 div#infochart {
 	position: absolute;
-    top: 528px;
+    top: 478px;
 	left: 1216px;
 	width: 704px;
-	height: 198px;
+	height: 248px;
     border: 1px solid black;
 	text-align: center;
 
@@ -236,9 +236,8 @@ text.selected{
 	font-weight: bold;
 }
 
-td .selected {
+td.selected {
 	font-weight: bold;
-	bg-color: lightgray;
 }	
 
 #map1 .included {
