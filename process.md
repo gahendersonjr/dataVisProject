@@ -113,4 +113,44 @@ The data on the line graph and bar chart simply shows 6 static countries: United
 - Add secondary charts to the accompany the map
 
 ## Final Submission (due 12/3/2018)
-##### Data
+##### Design Evolution
+We ended up adapting on the fly as we implemented details and saw the issues with them. Our final submission was a bit different than our proposal and prototype but we believe it is a better concept altogether. The largest change is that rather than having two maps, we have once map with the data from both the maps. The value of the countries life expectancy is presents by the luminance of the background and there is a toggle-able setting that super-imposes arrows on the background of the country to determine the 10 year trend of the country.  The arrows are sloped depending on the severity of the change and are colored red if it is trending down, green if up, and white if no change.
+
+Another adaptation we made was to get rid of the customizable start and end date opting to allow the user to play the animation from any start date. We figured this was just as usable and simplified the graph as a whole. Rather than putting in a start and end date, the user drags the slider to the start date, presses play, and stops when they have seen the interval that interests them.
+
+We also made adaptations to the general layout of the webpage as we saw fit. The page now fits on a single 1080p screen which allows the user to see the changes in all the visualizations as they move the slider back and forth.
+
+Other small changes were made from the prototype as we saw fit. Part of the positive of the experience was the see where our proposal didn't make sense when implemented and to adjust on the fly.
+
+##### Implementation
+The functionality of the visualization is all tied to the slider on the top. As you move the slider, the map and all the graphs change depending on the selected year. This makes for a visualization that feels alive and gives very specific data as well as an overall trend.
+
+The background of the countries on the map have luminance to show the level of the life expectancy while the option is available to show trending arrow as mentioned in the previous section.
+
+Clicking on a country map or a continent above the bar chart will add it to the bar and line charts and information table. Hovering on any of those element will highlight the others for the corresponding country or region.
+
+We also implemented a play button that allows the year to increment and the visualizations to animated as it does. This allows the user to watch the visualization and the progression of the data occur and have a greater understanding of the general changes.
+
+As mentioned before, we worked hard to make this project accessible all from one view, all connected to the slider.
+
+Here is an image of the visualization without the trending arrows
+
+*Standard View*
+![Standard View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/standard.jpg)
+
+Here is an image of the with the trending arrows
+
+*With trending arrows*
+![With trending arrows](https://github.com/gahendersonjr/dataVisProject/blob/master/images/trendingArrows.jpg)
+
+Here is an image of the visualization with future projections
+*Future Projections*
+![Future Projections](https://github.com/gahendersonjr/dataVisProject/blob/master/images/future.jpg)
+
+##### Evaluation
+
+What we learned during this process was that imagining a visualization from scratch is hard. We thought our idea was really good but as we went forward we learned that we were totally wrong several times. We had to meet together a lot and decide how we were going to adapt. We also had to really focus on selecting our channels wisely to show the data that we wanted to show on the same figures.
+
+We could further improve our project by styling it since it currently just a white background with unexciting font, etc.
+
+Overall, this project was a very good learning experiences and both of us ended it proud of what we had achieved.
