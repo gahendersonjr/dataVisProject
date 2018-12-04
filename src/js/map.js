@@ -205,6 +205,11 @@ class Map {
           .classed("inactive", !checked);
 
          let percent_change = (country[year] - country[year-interval])/country[year];
+         if(percent_change > 1){
+           percent_change = 1;
+         } else if(percent_change < -1){
+           percent_change =  -1;
+         }
          rotate = this.rotateScale(percent_change);
 
          let pattern = this.g.select("#"  + country.geo + "Pattern");
