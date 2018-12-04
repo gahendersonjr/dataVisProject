@@ -3,12 +3,23 @@ class InfoPanel {
 
 	constructor(worldData, year) {
 		this.worldData = worldData;
-		let data = [["Country","Life Expectancy","5-year Trend","10-year Trend","20-year Trend"]];
+		let data = [["Country","Life Expectancy","Rank","Percentile","5-year Trend","10-year Trend","20-year Trend"]];
 		for( let country of worldData )
 		{
 			let row = [];
 			row.push(country["geo.name"]);
 			row.push(country[year]);
+			
+			let over = 0;
+			let under = 0;
+			for( let c of time.worldData )
+				if( c[year] > country[year] )
+					over++;
+				else
+					under++;
+			row.push(over+1);
+			row.push( Math.round(99.5-(over+1)/(over+under)*100) );
+				
 			let trend5 = (year < 1805 ? "" : ""+(Math.round(100*(country[year] - country[year-5]))/100));
 			if(parseFloat(trend5) > 0) trend5 = "+" + trend5;
 			row.push(trend5);
@@ -40,7 +51,7 @@ class InfoPanel {
 				.data( d => d )//function(d) { console.log(d); let a = []; a.push(d); return a; } )
 				.enter()
 				.append("td")
-				.html( function(d) { console.log(d); return d; } )
+				.html( d => d )
 			;
 		}  
 	  
