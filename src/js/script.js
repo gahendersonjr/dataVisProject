@@ -6,6 +6,10 @@ let max_year = 2018;
 let selected_year = 1850;
 var time = new TimeLine(min_year, max_year, selected_year);
 
+let loading = d3.select("#map1").append("text")
+                .text("Loading...")
+                .attr("x", "20")
+                .attr("y", "20");
 d3.csv("data/lex.csv", d => d)
   .then(function(data) {
     for (let i in data){
@@ -35,6 +39,7 @@ d3.csv("data/lexContinents.csv", d => d)
 let map = new Map(countries);
 d3.json("data/world.json")
     .then(function(data) {
+      d3.select("#map1").selectAll("text").remove();
       map.drawMap(data);
 	  time.highlightCountries();
 });
