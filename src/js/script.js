@@ -39,7 +39,7 @@ d3.csv("data/lexContinents.csv", d => d)
 let map = new Map(countries);
 d3.json("data/world.json")
     .then(function(data) {
-      d3.select("#map1").selectAll("text").remove();
+      loading.remove();
       map.drawMap(data);
 	  time.highlightCountries();
 });
