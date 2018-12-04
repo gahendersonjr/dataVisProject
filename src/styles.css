@@ -67,7 +67,7 @@ div#sliderdiv {
 	position: absolute;
     top: 0px;
     left: 577px;
-    width: 1343px;
+    width: 1259px;
 	height: 75px;
     border: 1px solid black;
 }
@@ -91,7 +91,7 @@ div#controlpanel {
 	position: absolute;
     top: 76px;
 	left: 1216px;
-	width: 704px;
+	width: 620px;
 	height: 50px;
 	line-height: 50px;
     border: 1px solid black;
@@ -104,7 +104,7 @@ div#barchart {
 	position: absolute;
     top: 127px;
 	left: 1216px;
-	width: 704px;
+	width: 620px;
 	height: 350px;
     border: 1px solid black;
 	text-align: center;
@@ -112,7 +112,7 @@ div#barchart {
 #continentsvg {
 	position: absolute;
 	top: 30px;
-	left: 52px;
+	left: 15px;
 	height: 50px
 	width: 600px;
 }
@@ -132,7 +132,7 @@ div#barchart {
 #barchartsvg {
 	position: absolute;
 	top: 80px;
-	left: 102px;
+	left: 65px;
 }
 
 
@@ -140,7 +140,7 @@ div#infochart {
 	position: absolute;
     top: 478px;
 	left: 1216px;
-	width: 704px;
+	width: 620px;
 	height: 248px;
     border: 1px solid black;
 	text-align: center;
@@ -148,8 +148,11 @@ div#infochart {
 }
 
 #infotable {
+  position: absolute;
 	border: 1px solid black;
 	width: 600px;
+  left: 10px;
+  top: 20px;
 }
 
 #infotable td {
@@ -238,7 +241,7 @@ text.selected{
 
 td.selected {
 	font-weight: bold;
-}	
+}
 
 #map1 .included {
 	stroke: yellow;
