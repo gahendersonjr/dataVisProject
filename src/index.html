@@ -22,9 +22,11 @@
 			<h1>Life Expectancy Visualized</h1>
 		</header>
 	</div>
-	<div id="sliderdiv"><svg id="slider" width="1215" height="50"></svg></div>
+	<div id="sliderdiv">
+    <button id="about" onclick="about()">About</button>
+    <svg id="slider" width="1215" height="50"></svg>
+  </div>
 	<div id="controlpanel">
-    <button id = "play" onclick="about()">About</button>
 		<input type="checkbox" id="futureBox" onchange="toggleFutureProjections(this)"> Include future projections </input>
 		<input type="checkbox" id="arrowBox" onchange="toggleArrows(this)"> Show trend </input>
 		<button id = "play" onclick="playAnimation(this)">Play</button>

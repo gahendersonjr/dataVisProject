@@ -48,7 +48,10 @@
 	pointer-events: none;
 }
 
-
+#about {
+  margin-top: 32px;
+  margin-left: 20px;
+}
 
 div#titlediv {
 	position: absolute;
@@ -141,7 +144,7 @@ div#infochart {
 	height: 198px;
     border: 1px solid black;
 	text-align: center;
-	
+
 }
 
 
@@ -154,7 +157,7 @@ div#timeline {
     border: 1px solid black;
 	text-align: center;
 }
-	
+
 div#timeline svg{
 	position: absolute;
 	left: 10px;
