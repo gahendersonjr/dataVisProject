@@ -95,3 +95,7 @@ function toggleFutureProjections(checkbox){
   slider.makeSlider(min_year, max_year, selected_year);
   time.updateYearRange(min_year, max_year);
 }
+
+function about(){
+  alert("Bacon ipsum dolor amet pig tri-tip landjaeger, tongue shoulder ball tip buffalo filet mignon ribeye sirloin capicola flank. Biltong ribeye pastrami sausage, meatball kielbasa bresaola pig frankfurter brisket kevin alcatra flank landjaeger burgdoggen. Boudin turkey pork spare ribs. Chicken doner tongue, venison shoulder pork turducken frankfurter kielbasa turkey. Pork belly tri-tip corned beef, capicola venison picanha kevin porchetta ribeye pancetta. Alcatra fatback short loin bacon jerky cow t-bone leberkas turducken beef drumstick. Meatball pastrami biltong salami flank turkey hamburger kielbasa ribeye fatback landjaeger. Venison doner ground round, beef t-bone ball tip leberkas tri-tip pancetta short ribs chuck prosciutto kielbasa beef ribs fatback. Jowl alcatra buffalo corned beef, ball tip capicola frankfurter filet mignon cupim sirloin ground round brisket. Cupim jowl bresaola pancetta ground round tail, beef ribeye turkey ham. Sausage shank tail ham hock cow, strip steak rump picanha beef flank. Filet mignon shoulder tongue ribeye, turducken kevin alcatra tail andouille. Corned beef filet mignon andouille burgdoggen alcatra ham hock. Tenderloin ham hock flank sausage cow beef ribs meatloaf beef shoulder leberkas filet mignon.");
+}
