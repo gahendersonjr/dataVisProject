@@ -34,11 +34,11 @@ class TimeLine {
 	  svg.selectAll("text").data(time.continentData).enter()
 		.append("text")
 		.attr("x", (d,i) => 55 + 120*i)
-		.attr("y", 13)
+		.attr("y", 15)
 		.attr("class","continentLabel")
 		.html( d => d["geo.name"] )
-	  ;	  
-	  
+	  ;
+
 	  svg.selectAll("rect").data(time.continentData).enter()
 		.append("rect")
 		.attr("x", (d,i) => 120*i)
@@ -49,12 +49,12 @@ class TimeLine {
 		.attr("id", d => d.geo + "LabelRect" )
    	    .on("click", d => time.toggleCountry(d.geo) )
    	    .on("mouseover", d => time.hoverOnCountry(d.geo) )
-   	    .on("mouseout", d => time.hoverOffCountry(d.geo) );		
+   	    .on("mouseout", d => time.hoverOffCountry(d.geo) );
 	  ;
 	  this.highlightContinents();
 	  this.finishConstruction();
   }
-  
+
   //add worldData
   addCountryData(countryData, countries)
   {
@@ -65,17 +65,17 @@ class TimeLine {
 		this.addCountry(c);
 	this.finishConstruction();
   }
-  
+
   //build barChart and infoPanel then draw
   finishConstruction()
   {
-	  if( this.worldData == null || this.continentData == null ) 
+	  if( this.worldData == null || this.continentData == null )
 		  return;
 	  this.draw();
 	  this.barChart = new BarChart(this.currentData, this.countries, this.year);
 	  this.info = new InfoPanel(this.currentData, this.year);
   }
-  
+
   //construct axes and scale
   draw() {
 
@@ -129,7 +129,7 @@ class TimeLine {
 		.attr("class","gridline")
 		.attr("d", d => "M " + xScale(this.beginYear) + "," + yScale(d) + " L " + xScale(this.endYear) + "," + yScale(d))
 	  ;
-	  
+
 	  //draw country trendlines
 	  svg.selectAll("path:not(.gridline)")
 		.data(this.currentData)
@@ -143,9 +143,9 @@ class TimeLine {
 		.on( "mouseout", d => time.hoverOffCountry(d.geo) )
 		.on( "click", d => time.removeCountry(d.geo) )
 	  ;
-	  
+
 	  let now = new Date().getYear()+1900;
- 
+
 
 	  //draw x-axis
 	  svg.append("g")
@@ -167,7 +167,7 @@ class TimeLine {
 		.style("stroke-dasharray","2 2")
 		.attr("d", "M " + xScale(this.year) + ",0 L " + xScale(this.year) + "," + (height-vPadding) )
 	  ;
-	  
+
 	  svg.append("text")
 		.attr("x", xScale(this.year + 1) )
 		.attr("y", yScale(100) )
@@ -175,7 +175,7 @@ class TimeLine {
 		.attr("transform",`rotate(90,${xScale(this.year + 1)},${yScale(100)})`)
 		.html( this.year )
 	  ;
- 
+
 	  //draw now solid line
 	  svg.append("path")
 		.style("stroke","black")
@@ -183,7 +183,7 @@ class TimeLine {
 		.attr("id","nowyearline")
 		.attr("d", "M " + xScale(now) + ",0 L " + xScale(now) + "," + (height-vPadding) )
 	  ;
-	  
+
 	  svg.append("text")
 		.attr("x", xScale(now + 1) )
 		.attr("y", yScale(100) )
@@ -191,7 +191,7 @@ class TimeLine {
 		.attr("transform",`rotate(90,${xScale(now + 1)},${yScale(100)})`)
 		.html( "Present Year" )
 	  ;
- 
+
  }
 
   updateYear(currentYear) {
@@ -241,7 +241,7 @@ class TimeLine {
 		  }
 		  return false;
 	  }
-		  
+
 	  for( let data of this.worldData )
 		  if( data.geo == newCountry )
 		  {
@@ -266,7 +266,7 @@ class TimeLine {
 	  d3.select("#" + country + "LabelRect").classed("included",false);
 	  d3.select("#" + country + "Arrow").classed("included",false);
 	  d3.select("#useclick" + country).remove();
-	  
+
 	  this.world = 0;
 	  this.continents = 0;
 	  for( let country of this.currentData )
@@ -274,10 +274,10 @@ class TimeLine {
 				this.world++;
 			else if( country.geo.length > 3 )
 				this.continents++;
-	  
+
 	  this.finishConstruction();
   }
-  
+
   hoverOnCountry( country ) {
 	d3.select("#" + country + "LabelRect").classed("selected",true);
 	d3.select("#" + country + "Arrow").classed("selected",true);
@@ -289,27 +289,27 @@ class TimeLine {
 	d3.select("#" + country + "Trend").classed("selected",true);
 	;
   }
-  
+
   hoverOffCountry( country ) {
 	d3.select("#" + country + "LabelRect").classed("selected",false);
 	d3.select("#" + country + "Arrow").classed("selected",false);
 	d3.select("#usehover").remove();
 	d3.select("#" + country + "Bar").classed("selected",false);
-	d3.select("#" + country + "Trend").classed("selected",false);	
+	d3.select("#" + country + "Trend").classed("selected",false);
   }
-  
+
   toggleCountry( country ) {
 	if( !this.addCountry(country) )
 	{
 		this.removeCountry(country);
 	}
   }
-  
+
   highlightContinents() {
 	for( let data of this.currentData )
 		d3.select("#" + data.geo + "LabelRect").classed("included",true);
-  }	  
-  
+  }
+
   highlightCountries() {
 	  for( let data of this.countries )
 	  {
@@ -319,15 +319,15 @@ class TimeLine {
 		          .attr("id",d => "useclick" + d)
 				  .attr("xlink:href", d => "#" + d );
 	  }
-  }  
-  
-  
+  }
+
+
   redraw(){
 	  this.draw();
   }
-  
+
   printCounts()
   {
-	  console.log("World: "+this.world+", Continents: "+this.continents+", Total:"+this.countries.length);  
+	  console.log("World: "+this.world+", Continents: "+this.continents+", Total:"+this.countries.length);
   }
 }

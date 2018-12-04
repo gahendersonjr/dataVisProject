@@ -55,7 +55,7 @@ class Map {
    	    .on("mouseover", d => time.hoverOnCountry(d.id) )
    	    .on("mouseout", d => time.hoverOffCountry(d.id) );
 
-  let year = 2018;
+  let year = 1850;
   this.updateCountry(year);
   this.createPatterns();
   this.updateArrows(year, 1);
