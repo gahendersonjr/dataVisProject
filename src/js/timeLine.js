@@ -73,7 +73,7 @@ class TimeLine {
 		  return;
 	  this.draw();
 	  this.barChart = new BarChart(this.currentData, this.countries, this.year);
-	  this.info = new InfoPanel(this.currentData);
+	  this.info = new InfoPanel(this.currentData, this.year);
   }
   
   //construct axes and scale
@@ -197,6 +197,8 @@ class TimeLine {
   updateYear(currentYear) {
 	this.year = currentYear;
     this.barChart.updateYear(currentYear);
+	this.info = new InfoPanel(this.currentData, this.year);
+
 	this.redraw();
   }
 

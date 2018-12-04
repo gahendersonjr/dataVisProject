@@ -141,7 +141,9 @@ div#infochart {
 	height: 198px;
     border: 1px solid black;
 	text-align: center;
+	
 }
+
 
 div#timeline {
 	position: absolute;
@@ -152,7 +154,7 @@ div#timeline {
     border: 1px solid black;
 	text-align: center;
 }
-
+	
 div#timeline svg{
 	position: absolute;
 	left: 10px;
