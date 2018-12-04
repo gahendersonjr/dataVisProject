@@ -21,8 +21,8 @@ class Map {
     this.svg.call(this.zoom);
 
     this.colorScale = d3.scaleLinear()
-      .domain([0, 100])
-      .range(["black", "lightGray"]);
+      .domain([10, 100])
+      .range(["black", "white"]);
 
     this.rotateScale = d3.scaleLinear()
       .domain([-1, 1])

@@ -2,13 +2,13 @@
 ## Final Project Proposal
 ##### Basic Info
 _Project Title:_
- 
+
  Visualizing Life Expectancy by Country since 1800
-  
+
 _Group Members:_
-  
+
   Gregory Alan Henderson, gahendersonjr@gmail.com
-  
+
   Todd Vawdrey, todd.vawdrey@gmail.com
 
 ##### Background and Motivation
@@ -36,8 +36,8 @@ For this project we have chosen to use the standard projections for the maps as 
 We thought about doing this with some sort of superimposed map but couldn’t think of a way for that to work without being too messy so we are going with the two map layout to tell the whole story is a good way.
 
 ##### Must-Have Features
-- Year slider (1800-)
-- Two world map visualizations. 
+- Year slider (1850-)
+- Two world map visualizations.
   - One map showing absolute life expectancy by country for selected year by saturation.
   - One map showing percent change per country. Increase will be blue and decrease will be red. Saturation for the red and blue will be used to portray steepness of increase/decline. No change due to guessistamate data remaining gray.
 - Clicking country on either map shows side panel with the following information:
@@ -62,7 +62,7 @@ Hovering and clicking animations with countries on maps.
 _November 12_
 
  Basic infrastructure in place. Data is parsed maps are showing, year slider is implemented and clicking calls relevant function with relevant data to populate sidebar.
- 
+
 _November 19_
 
 Prototype done. All required functionality present but not refined and beautified.
@@ -72,7 +72,7 @@ _November 20_
 
 As many optional features as feasible done, main feature made beautiful and any bugs fixed.
 
-##### Proposal images 
+##### Proposal images
 *High Level View*
 ![High Level View](https://github.com/gahendersonjr/dataVisProject/blob/master/images/overview.jpg)
 
@@ -111,3 +111,6 @@ The data on the line graph and bar chart simply shows 6 static countries: United
 - Possibly add customization to trend views (ability to select interval for trending view)
 - Add legends to the map
 - Add secondary charts to the accompany the map
+
+## Final Submission (due 12/3/2018)
+##### Data

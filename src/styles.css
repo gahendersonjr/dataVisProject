@@ -144,7 +144,6 @@ div#infochart {
 	height: 248px;
     border: 1px solid black;
 	text-align: center;
-
 }
 
 #infotable {
@@ -152,7 +151,7 @@ div#infochart {
 	border: 1px solid black;
 	width: 600px;
   left: 10px;
-  top: 20px;
+  top: 5px;
 }
 
 #infotable td {
