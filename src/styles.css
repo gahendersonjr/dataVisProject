@@ -162,7 +162,7 @@ div#infochart {
 
 #TableHeadersRow {
 	font-weight: bold;
-
+	background-color: #DDDDDD;
 }
 
 div#timeline {
@@ -187,31 +187,31 @@ path.country0 {
 	stroke: rgb(100,100,100);
 }
 
-rect.country1 {
+rect.country3 {
 	fill: green;
 }
-path.country1 {
+path.country3 {
 	stroke: green;
 }
 
-rect.country2 {
+rect.country4 {
 	fill: red;
 }
-path.country2 {
+path.country4 {
 	stroke: red;
 }
 
-rect.country3 {
+rect.country2 {
 	fill: blue;
 }
-path.country3 {
+path.country2 {
 	stroke: blue;
 }
 
-rect.country4 {
+rect.country1 {
 	fill: purple;
 }
-path.country4 {
+path.country1 {
 	stroke: purple;
 }
 
@@ -241,6 +241,7 @@ text.selected{
 
 td.selected {
 	font-weight: bold;
+	background-color: #AAAAAA;
 }
 
 #map1 .included {

@@ -3,7 +3,7 @@ class InfoPanel {
 
 	constructor(worldData, year) {
 		this.worldData = worldData;
-		let data = [["Country","Life Expectancy","Rank","Percentile","5-year Trend","10-year Trend","20-year Trend"]];
+		let data = [["Location","Life Expectancy","Rank","Percentile","5-year Trend","10-year Trend","20-year Trend"]];
 		for( let country of worldData )
 		{
 			let row = [];
